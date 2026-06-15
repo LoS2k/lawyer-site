@@ -2,7 +2,8 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a2640">
 <title>Валентина Грішина — Адвокат</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -18,9 +19,13 @@
     --muted: #5a6478;
     --border: rgba(26,38,64,0.12);
     --white: #ffffff;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
   body {
     font-family: 'Inter', sans-serif;
@@ -29,9 +34,12 @@
     background: var(--white);
     line-height: 1.7;
     font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -40,9 +48,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 1.25rem 4rem;
+    padding-top: calc(1.25rem + var(--safe-top));
     background: rgba(255,255,255,0.97);
     border-bottom: 0.5px solid var(--border);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
@@ -66,6 +76,7 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     transition: color 0.2s;
+    -webkit-tap-highlight-color: transparent;
   }
   .nav-links a:hover { color: var(--navy); }
   .nav-cta {
@@ -75,14 +86,78 @@
     border-radius: 2px;
     transition: background 0.2s !important;
   }
-  .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+  .nav-cta:hover,
+  .nav-cta:active { background: var(--gold) !important; color: var(--white) !important; }
 
-  /* HERO */
+  /* Mobile burger */
+  .burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    margin: -8px;
+    -webkit-tap-highlight-color: transparent;
+    background: none;
+    border: none;
+  }
+  .burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--navy);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu drawer */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--white);
+    z-index: 99;
+    flex-direction: column;
+    padding: calc(5rem + var(--safe-top)) 2rem 2rem;
+    gap: 0;
+    overflow-y: auto;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    text-decoration: none;
+    color: var(--navy);
+    font-size: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    padding: 1rem 0;
+    border-bottom: 0.5px solid var(--border);
+    -webkit-tap-highlight-color: transparent;
+    display: block;
+  }
+  .mobile-menu .mobile-cta {
+    margin-top: 1.5rem;
+    background: var(--navy);
+    color: var(--white) !important;
+    text-align: center;
+    border-radius: 3px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: none;
+    padding: 1rem;
+  }
+
+  /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-top: 5rem;
+    padding-top: calc(4rem + var(--safe-top));
   }
   .hero-left {
     background: var(--navy);
@@ -97,8 +172,7 @@
     content: '';
     position: absolute;
     top: 0; right: 0;
-    width: 1px;
-    height: 100%;
+    width: 1px; height: 100%;
     background: var(--gold);
     opacity: 0.4;
   }
@@ -118,10 +192,7 @@
     color: var(--white);
     margin-bottom: 1.5rem;
   }
-  .hero-title em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
+  .hero-title em { font-style: italic; color: var(--gold-light); }
   .hero-desc {
     color: rgba(255,255,255,0.65);
     font-size: 1rem;
@@ -144,8 +215,11 @@
     border-radius: 2px;
     transition: background 0.2s;
     align-self: flex-start;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
-  .hero-btn:hover { background: var(--gold-light); }
+  .hero-btn:hover,
+  .hero-btn:active { background: var(--gold-light); }
   .hero-btn svg { width: 16px; height: 16px; }
   .hero-stats {
     margin-top: 3.5rem;
@@ -181,12 +255,12 @@
     justify-content: center;
     overflow: hidden;
     position: relative;
+    min-height: 320px;
   }
   .hero-photo-placeholder::after {
     content: 'ФОТО АДВОКАТА';
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     font-size: 0.75rem;
     letter-spacing: 0.12em;
@@ -208,13 +282,32 @@
     font-weight: 600;
     color: var(--navy);
   }
-  .hero-badge-sub {
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-top: 0.2rem;
-  }
+  .hero-badge-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
 
-  /* SECTION BASE */
+  /* ── COUNTER BAR ── */
+  .counter-bar {
+    background: var(--cream);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0.9rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .counter-item { display: flex; align-items: center; gap: 0.7rem; }
+  .online-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #4caf50;
+    box-shadow: 0 0 0 3px rgba(76,175,80,0.2);
+    flex-shrink: 0;
+  }
+  .counter-label { font-size: 0.78rem; color: var(--muted); }
+  .counter-val { font-size: 0.85rem; font-weight: 500; color: var(--navy); }
+  .counter-divider { width: 0.5px; height: 18px; background: var(--border); }
+
+  /* ── SECTIONS ── */
   section { padding: 5rem 4rem; }
   .section-eyebrow {
     font-size: 0.72rem;
@@ -232,19 +325,10 @@
     line-height: 1.2;
     margin-bottom: 1rem;
   }
-  .section-lead {
-    color: var(--muted);
-    max-width: 580px;
-    line-height: 1.85;
-  }
-  .divider {
-    width: 48px;
-    height: 1px;
-    background: var(--gold);
-    margin: 1.2rem 0;
-  }
+  .section-lead { color: var(--muted); max-width: 580px; line-height: 1.85; }
+  .divider { width: 48px; height: 1px; background: var(--gold); margin: 1.2rem 0; }
 
-  /* ABOUT */
+  /* ── ABOUT ── */
   #about {
     background: var(--white);
     display: grid;
@@ -268,18 +352,13 @@
   }
   .about-list li::before {
     content: '';
-    width: 5px;
-    height: 5px;
+    width: 5px; height: 5px;
     background: var(--gold);
     border-radius: 50%;
     margin-top: 0.6rem;
     flex-shrink: 0;
   }
-  .about-credentials {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+  .about-credentials { display: flex; flex-direction: column; gap: 1rem; }
   .credential-card {
     padding: 1.4rem 1.6rem;
     border: 0.5px solid var(--border);
@@ -295,29 +374,15 @@
     background: var(--gold);
   }
   .credential-year {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    color: var(--gold);
-    margin-bottom: 0.3rem;
-    text-transform: uppercase;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.1em; color: var(--gold);
+    margin-bottom: 0.3rem; text-transform: uppercase;
   }
-  .credential-title {
-    font-weight: 500;
-    color: var(--navy);
-    font-size: 0.95rem;
-  }
-  .credential-sub {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-top: 0.15rem;
-  }
+  .credential-title { font-weight: 500; color: var(--navy); font-size: 0.95rem; }
+  .credential-sub { font-size: 0.85rem; color: var(--muted); margin-top: 0.15rem; }
 
-  /* SERVICES */
-  #services {
-    background: var(--cream);
-    text-align: center;
-  }
+  /* ── SERVICES ── */
+  #services { background: var(--cream); text-align: center; }
   #services .section-eyebrow,
   #services .section-title,
   #services .section-lead { margin-left: auto; margin-right: auto; }
@@ -335,36 +400,25 @@
     border-radius: 4px;
     border: 0.5px solid var(--border);
     transition: border-color 0.2s, transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
   }
-  .service-card:hover {
-    border-color: var(--gold);
-    transform: translateY(-3px);
-  }
+  .service-card:hover { border-color: var(--gold); transform: translateY(-3px); }
   .service-icon {
-    width: 44px;
-    height: 44px;
+    width: 44px; height: 44px;
     background: rgba(184,149,58,0.1);
     border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     margin-bottom: 1.2rem;
     font-size: 1.3rem;
   }
   .service-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 0.6rem;
+    font-size: 1.25rem; font-weight: 600;
+    color: var(--navy); margin-bottom: 0.6rem;
   }
-  .service-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.75;
-  }
+  .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
 
-  /* CASES */
+  /* ── CASES ── */
   #cases { background: var(--white); }
   .cases-grid {
     display: grid;
@@ -376,54 +430,92 @@
     padding: 2rem;
     border: 0.5px solid var(--border);
     border-radius: 4px;
-    position: relative;
   }
   .case-tag {
     display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    background: rgba(184,149,58,0.08);
-    padding: 0.25rem 0.7rem;
-    border-radius: 2px;
-    margin-bottom: 0.9rem;
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); background: rgba(184,149,58,0.08);
+    padding: 0.25rem 0.7rem; border-radius: 2px; margin-bottom: 0.9rem;
   }
   .case-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem; font-weight: 500; color: var(--navy); margin-bottom: 0.5rem;
   }
-  .case-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.75;
-  }
+  .case-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
   .case-result {
-    margin-top: 1rem;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: #2a7a4b;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    margin-top: 1rem; font-size: 0.82rem; font-weight: 500; color: #2a7a4b;
+    display: flex; align-items: center; gap: 0.4rem;
   }
   .case-result::before {
     content: '✓';
-    width: 18px;
-    height: 18px;
-    background: rgba(42,122,75,0.1);
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    width: 18px; height: 18px;
+    background: rgba(42,122,75,0.1); border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
     font-size: 0.65rem;
   }
 
-  /* CALLBACK */
+  /* ── REVIEWS ── */
+  #reviews { background: var(--cream); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+  }
+  .review-card {
+    background: var(--white);
+    padding: 1.6rem;
+    border-radius: 4px;
+    border: 0.5px solid var(--border);
+  }
+  .review-stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.8rem; }
+  .review-text { font-size: 0.92rem; color: var(--muted); line-height: 1.75; font-style: italic; }
+  .review-footer { margin-top: 1rem; padding-top: 0.8rem; border-top: 0.5px solid var(--border); }
+  .review-name { font-size: 0.85rem; font-weight: 500; color: var(--navy); }
+  .review-date { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+  .review-form-wrap {
+    margin-top: 3rem;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 4px;
+    border: 0.5px solid var(--border);
+    max-width: 560px;
+  }
+  .review-form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem;
+  }
+  .review-form-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.4rem; }
+
+  /* ── MAP ── */
+  #map-section { padding: 0; background: var(--white); }
+  .map-grid { display: grid; grid-template-columns: 1fr 2fr; }
+  .map-info {
+    background: var(--navy);
+    padding: 3.5rem 2.5rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .map-info-row { display: flex; gap: 0.9rem; align-items: flex-start; }
+  .map-info-icon {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .map-info-text { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+  .map-btn {
+    margin-top: 2rem;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--gold); color: var(--white);
+    text-decoration: none; padding: 0.75rem 1.4rem;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: 2px; -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* ── CONTACT ── */
   #contact {
     background: var(--navy);
     display: grid;
@@ -434,145 +526,172 @@
   .contact-left .section-title { color: var(--white); }
   .contact-left .section-lead { color: rgba(255,255,255,0.6); max-width: 400px; }
   .contact-info-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    color: rgba(255,255,255,0.75);
-    font-size: 0.9rem;
+    display: flex; align-items: center; gap: 1rem;
+    margin-top: 1.5rem; color: rgba(255,255,255,0.75); font-size: 0.9rem;
   }
   .contact-info-icon {
-    width: 38px;
-    height: 38px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.08); border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
   }
-  .callback-form {
-    background: var(--white);
-    padding: 2.5rem;
-    border-radius: 4px;
-  }
+  .callback-form { background: var(--white); padding: 2.5rem; border-radius: 4px; }
   .form-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 0.4rem;
+    font-size: 1.6rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem;
   }
-  .form-sub {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 1.8rem;
-  }
+  .form-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.8rem; }
   .form-group { margin-bottom: 1.1rem; }
   .form-label {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.4rem;
+    display: block; font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.4rem;
   }
   .form-control {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.85rem 1rem;
     border: 0.5px solid var(--border);
     border-radius: 3px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem; /* 16px prevents iOS zoom */
     font-weight: 300;
     color: var(--text);
     background: var(--white);
     transition: border-color 0.2s;
     outline: none;
+    -webkit-appearance: none;
     appearance: none;
   }
   .form-control:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,149,58,0.1); }
   .form-control::placeholder { color: rgba(90,100,120,0.45); }
   textarea.form-control { resize: vertical; min-height: 100px; }
   .form-submit {
-    width: 100%;
-    padding: 1rem;
-    background: var(--navy);
-    color: var(--white);
-    border: none;
-    border-radius: 3px;
+    width: 100%; padding: 1rem;
+    background: var(--navy); color: var(--white);
+    border: none; border-radius: 3px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s;
     margin-top: 0.5rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    min-height: 48px; /* touch target */
   }
-  .form-submit:hover { background: var(--gold); }
-  .form-notice {
-    font-size: 0.75rem;
-    color: var(--muted);
-    text-align: center;
-    margin-top: 0.9rem;
-    line-height: 1.6;
-  }
-
-  /* SUCCESS */
-  .success-msg {
-    display: none;
-    text-align: center;
-    padding: 2rem;
-  }
+  .form-submit:hover,
+  .form-submit:active { background: var(--gold); }
+  .form-notice { font-size: 0.75rem; color: var(--muted); text-align: center; margin-top: 0.9rem; line-height: 1.6; }
+  .success-msg { display: none; text-align: center; padding: 2rem; }
   .success-msg.show { display: block; }
   .success-icon {
-    width: 52px;
-    height: 52px;
-    background: rgba(42,122,75,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    margin: 0 auto 1rem;
+    width: 52px; height: 52px;
+    background: rgba(42,122,75,0.1); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin: 0 auto 1rem;
   }
-  .success-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    color: var(--navy);
-    margin-bottom: 0.5rem;
-  }
+  .success-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 0.5rem; }
   .success-text { font-size: 0.9rem; color: var(--muted); }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer {
     background: var(--navy);
     border-top: 0.5px solid rgba(255,255,255,0.08);
     padding: 2rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding-bottom: calc(2rem + var(--safe-bottom));
+    display: flex; align-items: center; justify-content: space-between;
   }
   footer .nav-logo { color: rgba(255,255,255,0.85); font-size: 1.05rem; }
   footer .nav-logo span { color: var(--gold); }
   .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
 
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
+  /* ── SHARED BUTTON TOUCH ── */
+  a, button { touch-action: manipulation; }
+
+  /* ════════════════════════════════════
+     RESPONSIVE — tablet ≤ 1024px
+  ════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-title { font-size: 3rem; }
+    .hero-left { padding: 5rem 3rem 5rem 3rem; }
+  }
+
+  /* ════════════════════════════════════
+     RESPONSIVE — mobile ≤ 768px
+  ════════════════════════════════════ */
+  @media (max-width: 768px) {
+    /* Nav */
+    nav { padding: 1rem 1.25rem; padding-top: calc(1rem + var(--safe-top)); }
     .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 4rem 1.5rem; }
-    .hero-title { font-size: 2.6rem; }
-    .hero-right { min-height: 300px; }
-    section { padding: 3.5rem 1.5rem; }
-    #about, #contact { grid-template-columns: 1fr; gap: 2.5rem; }
+    .burger { display: flex; }
+
+    /* Hero — stack vertically */
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      padding-top: calc(3.5rem + var(--safe-top));
+    }
+    .hero-left { padding: 3rem 1.5rem 2.5rem; }
+    .hero-title { font-size: 2.4rem; }
+    .hero-desc { font-size: 0.95rem; }
+    .hero-stats { gap: 1.5rem; }
+    .stat-num { font-size: 1.8rem; }
+    .hero-right { min-height: 280px; }
+    .hero-badge { left: 1rem; bottom: 1rem; }
+
+    /* Counter bar */
+    .counter-bar { padding: 0.75rem 1.25rem; justify-content: center; gap: 1.2rem; }
+    .counter-divider { display: none; }
+
+    /* Sections */
+    section { padding: 3rem 1.25rem; }
+    .section-title { font-size: 2rem; }
+
+    /* About */
+    #about { grid-template-columns: 1fr; gap: 2rem; }
+
+    /* Services */
     .services-grid { grid-template-columns: 1fr; }
+
+    /* Cases */
     .cases-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+
+    /* Map */
+    .map-grid { grid-template-columns: 1fr; }
+    .map-info { padding: 2.5rem 1.5rem; }
+
+    /* Contact */
+    #contact { grid-template-columns: 1fr; gap: 2rem; }
+    .callback-form { padding: 1.5rem; }
+
+    /* Footer */
+    footer {
+      flex-direction: column; gap: 0.5rem;
+      text-align: center; padding: 1.5rem;
+      padding-bottom: calc(1.5rem + var(--safe-bottom));
+    }
+
+    /* Bigger tap targets */
+    .hero-btn,
+    .map-btn { padding: 1rem 1.75rem; font-size: 0.9rem; }
+    .form-control { font-size: 16px; } /* prevent iOS zoom */
+  }
+
+  /* ════════════════════════════════════
+     RESPONSIVE — small phones ≤ 390px
+  ════════════════════════════════════ */
+  @media (max-width: 390px) {
+    .hero-title { font-size: 2rem; }
+    .hero-stats { flex-wrap: wrap; gap: 1rem; }
+    .stat-num { font-size: 1.6rem; }
+    .section-title { font-size: 1.75rem; }
+    .hero-badge { display: none; }
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+    html { scroll-behavior: auto; }
   }
 </style>
 </head>
@@ -582,18 +701,30 @@
 <nav>
   <a href="#" class="nav-logo">Грішина<span> &amp; Партнери</span></a>
   <ul class="nav-links">
-    <li><a href="about.html">Про мене</a></li>
+    <li><a href="#about">Про мене</a></li>
     <li><a href="#services">Послуги</a></li>
-    <li><a href="cases.html">Портфоліо</a></li>
-    <li><a href="reviews.html">Відгуки</a></li>
-    <li><a href="blog.html">Корисне</a></li>
+    <li><a href="#cases">Портфоліо</a></li>
+    <li><a href="#reviews">Відгуки</a></li>
     <li><a href="#map-section">Контакти</a></li>
-    <li><a href="consultation.html" class="nav-cta">Консультація</a></li>
+    <li><a href="#contact" class="nav-cta">Консультація</a></li>
   </ul>
+  <button class="burger" id="burger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about"      onclick="closeMobileMenu()">Про мене</a>
+  <a href="#services"   onclick="closeMobileMenu()">Послуги</a>
+  <a href="#cases"      onclick="closeMobileMenu()">Портфоліо</a>
+  <a href="#reviews"    onclick="closeMobileMenu()">Відгуки</a>
+  <a href="#map-section" onclick="closeMobileMenu()">Контакти</a>
+  <a href="#contact"    onclick="closeMobileMenu()" class="mobile-cta">Безкоштовна консультація →</a>
+</div>
+
 <!-- HERO -->
-<section class="hero" style="padding: 0;">
+<section class="hero" style="padding-left:0; padding-right:0;">
   <div class="hero-left">
     <p class="hero-eyebrow">Адвокат · Одеса · з 2010 року</p>
     <h1 class="hero-title">Ваші права —<br><em>під надійним</em><br>захистом</h1>
@@ -627,16 +758,16 @@
 </section>
 
 <!-- COUNTER BAR -->
-<div style="background:var(--cream); border-bottom:0.5px solid var(--border); padding:0.9rem 4rem; display:flex; align-items:center; justify-content:flex-end; gap:2.5rem;">
-  <div style="display:flex; align-items:center; gap:0.7rem;">
-    <div style="width:8px; height:8px; border-radius:50%; background:#4caf50; box-shadow:0 0 0 3px rgba(76,175,80,0.2);"></div>
-    <span style="font-size:0.78rem; color:var(--muted);">Зараз на сайті:</span>
-    <span style="font-size:0.85rem; font-weight:500; color:var(--navy);" id="online-now">2</span>
+<div class="counter-bar">
+  <div class="counter-item">
+    <div class="online-dot"></div>
+    <span class="counter-label">Зараз на сайті:</span>
+    <span class="counter-val" id="online-now">2</span>
   </div>
-  <div style="width:0.5px; height:18px; background:var(--border);"></div>
-  <div style="display:flex; align-items:center; gap:0.7rem;">
-    <span style="font-size:0.78rem; color:var(--muted);">Всього відвідувань:</span>
-    <span style="font-size:0.85rem; font-weight:500; color:var(--navy);" id="visit-count">—</span>
+  <div class="counter-divider"></div>
+  <div class="counter-item">
+    <span class="counter-label">Всього відвідувань:</span>
+    <span class="counter-val" id="visit-count">—</span>
   </div>
 </div>
 
@@ -646,8 +777,8 @@
     <p class="section-eyebrow">Про мене</p>
     <h2 class="section-title">Досвід, якому<br>можна довіряти</h2>
     <div class="divider"></div>
-    <p class="section-lead">Більше 9 років я захищаю інтереси клієнтів у судах різних інстанцій. Моя робота — це не просто юридична техніка, це щира відданість кожній справі та повага до людини в складній ситуації.</p>
-    <div style="margin-top:1.4rem; padding:1.2rem 1.4rem; border:0.5px solid var(--border); border-radius:4px; border-left: 3px solid var(--gold); background: rgba(184,149,58,0.04);">
+    <p class="section-lead">Більше 15 років я захищаю інтереси клієнтів у судах різних інстанцій. Моя робота — це не просто юридична техніка, це щира відданість кожній справі та повага до людини в складній ситуації.</p>
+    <div style="margin-top:1.4rem; padding:1.2rem 1.4rem; border:0.5px solid var(--border); border-radius:4px; border-left:3px solid var(--gold); background:rgba(184,149,58,0.04);">
       <div style="font-size:0.72rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">Команда</div>
       <p style="font-size:0.9rem; color:var(--muted); line-height:1.75; margin:0;">У роботі мені допомагає досвідчений помічник адвоката — кваліфікований юрист, який бере безпосередню участь у підготовці документів, аналізі справ та супроводі клієнтів. Разом ми забезпечуємо повний юридичний захист на кожному етапі.</p>
     </div>
@@ -758,30 +889,30 @@
 </section>
 
 <!-- REVIEWS -->
-<section id="reviews" style="background: var(--cream);">
+<section id="reviews">
   <p class="section-eyebrow">Відгуки</p>
   <h2 class="section-title">Що кажуть клієнти</h2>
   <div class="divider"></div>
   <p class="section-lead">Діліться своїм досвідом співпраці.</p>
 
-  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1.2rem; margin-top:2.5rem;" id="reviews-list">
-    <div style="background:var(--white); padding:1.6rem; border-radius:4px; border:0.5px solid var(--border);">
-      <div style="color:var(--gold); font-size:1rem; margin-bottom:0.8rem;">★★★★★</div>
-      <p style="font-size:0.92rem; color:var(--muted); line-height:1.75; font-style:italic;">"Найкращий адвокат з яким мені довелося працювати. Всі справи виграла."</p>
-      <div style="margin-top:1rem; padding-top:0.8rem; border-top:0.5px solid var(--border);">
-        <div style="font-size:0.85rem; font-weight:500; color:var(--navy);">Анчева Ірина Анатоліївна</div>
-        <div style="font-size:0.75rem; color:var(--muted); margin-top:0.15rem;">15.12.2023</div>
+  <div class="reviews-grid" id="reviews-list">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Найкращий адвокат з яким мені довелося працювати. Всі справи виграла."</p>
+      <div class="review-footer">
+        <div class="review-name">Анчева Ірина Анатоліївна</div>
+        <div class="review-date">15.12.2023</div>
       </div>
     </div>
   </div>
 
-  <div style="margin-top:3rem; background:var(--white); padding:2rem; border-radius:4px; border:0.5px solid var(--border); max-width:560px;">
-    <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--navy); margin-bottom:0.3rem;">Залишити відгук</div>
-    <p style="font-size:0.82rem; color:var(--muted); margin-bottom:1.4rem;">Ми цінуємо кожен відгук</p>
+  <div class="review-form-wrap">
+    <div class="review-form-title">Залишити відгук</div>
+    <p class="review-form-sub">Ми цінуємо кожен відгук</p>
     <form onsubmit="submitReview(event)">
       <div class="form-group">
         <label class="form-label">Ваше ім'я</label>
-        <input type="text" id="r-name" class="form-control" placeholder="Ім'я та прізвище" required>
+        <input type="text" id="r-name" class="form-control" placeholder="Ім'я та прізвище" required autocomplete="name">
       </div>
       <div class="form-group">
         <label class="form-label">Оцінка</label>
@@ -795,7 +926,7 @@
         <label class="form-label">Відгук</label>
         <textarea id="r-text" class="form-control" rows="3" placeholder="Розкажіть про свій досвід співпраці..." required></textarea>
       </div>
-      <button type="submit" class="form-submit" style="width:auto; padding:0.75rem 1.8rem;">Надіслати →</button>
+      <button type="submit" class="form-submit" style="width:auto; padding:0.85rem 1.8rem; min-width:160px;">Надіслати →</button>
     </form>
     <div id="review-success" style="display:none; margin-top:1rem; padding:0.9rem 1rem; background:rgba(42,122,75,0.08); border-radius:3px; font-size:0.88rem; color:#2a7a4b;">
       ✓ Дякуємо за відгук!
@@ -804,30 +935,30 @@
 </section>
 
 <!-- MAP -->
-<section id="map-section" style="padding: 0; background: var(--white);">
-  <div style="display:grid; grid-template-columns: 1fr 2fr;">
-    <div style="background:var(--navy); padding:3.5rem 2.5rem; display:flex; flex-direction:column; justify-content:center;">
+<section id="map-section" style="padding:0;">
+  <div class="map-grid">
+    <div class="map-info">
       <p style="font-size:0.72rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem;">Як нас знайти</p>
       <h2 style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:400; color:var(--white); line-height:1.25; margin-bottom:1.2rem;">Адреса офісу</h2>
       <div style="width:48px; height:1px; background:var(--gold); margin-bottom:1.5rem;"></div>
       <div style="display:flex; flex-direction:column; gap:1rem;">
-        <div style="display:flex; gap:0.9rem; align-items:flex-start;">
-          <div style="width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">📍</div>
-          <div style="font-size:0.9rem; color:rgba(255,255,255,0.75); line-height:1.6;">м. Одеса, р-н Київський<br>вул. Фонтанська дорога, 16/8, кв. 158</div>
+        <div class="map-info-row">
+          <div class="map-info-icon">📍</div>
+          <div class="map-info-text">м. Одеса, р-н Київський<br>вул. Фонтанська дорога, 16/8, кв. 158</div>
         </div>
-        <div style="display:flex; gap:0.9rem; align-items:flex-start;">
-          <div style="width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🚌</div>
-          <div style="font-size:0.9rem; color:rgba(255,255,255,0.75); line-height:1.6;">Зупинка «Фонтанська дорога»<br>Маршрути: 185, 195, 205</div>
+        <div class="map-info-row">
+          <div class="map-info-icon">🚌</div>
+          <div class="map-info-text">Зупинка «Фонтанська дорога»<br>Маршрути: 185, 195, 205</div>
         </div>
-        <div style="display:flex; gap:0.9rem; align-items:flex-start;">
-          <div style="width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🚗</div>
-          <div style="font-size:0.9rem; color:rgba(255,255,255,0.75); line-height:1.6;">Є парковка біля будинку</div>
+        <div class="map-info-row">
+          <div class="map-info-icon">🚗</div>
+          <div class="map-info-text">Є парковка біля будинку</div>
         </div>
       </div>
-      <a href="https://maps.google.com/?q=Одеса,+вул.+Фонтанська+дорога,+16/8" target="_blank" style="margin-top:2rem; display:inline-flex; align-items:center; gap:0.5rem; background:var(--gold); color:var(--white); text-decoration:none; padding:0.75rem 1.4rem; font-size:0.82rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px;">Прокласти маршрут →</a>
+      <a href="https://maps.google.com/?q=Одеса,+вул.+Фонтанська+дорога,+16/8" target="_blank" rel="noopener" class="map-btn">Прокласти маршрут →</a>
     </div>
     <div style="min-height:420px;">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2748.5!2d30.7233!3d46.4285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c633b6eaf7c6e3%3A0x1!2z0KTQvtC90YLQsNC90YHRjNC60LAg0LTQvtGA0L7Qs9CwLCAxNi84!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua" width="100%" height="420" style="border:0; display:block;" allowfullscreen="" loading="lazy"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2748.5!2d30.7233!3d46.4285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c633b6eaf7c6e3%3A0x1!2z0KTQvtC90YLQsNC90YHRjNC60LAg0LTQvtGA0L7Qs9CwLCAxNi84!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua" width="100%" height="420" style="border:0; display:block;" allowfullscreen="" loading="lazy" title="Карта офісу"></iframe>
     </div>
   </div>
 </section>
@@ -835,17 +966,19 @@
 <!-- CONTACT / CALLBACK -->
 <section id="contact">
   <div class="contact-left">
-    <p class="section-eyebrow" style="color: var(--gold-light);">Зворотний дзвінок</p>
+    <p class="section-eyebrow" style="color:var(--gold-light);">Зворотний дзвінок</p>
     <h2 class="section-title">Розкажіть<br>про свою<br>ситуацію</h2>
     <div class="divider"></div>
     <p class="section-lead">Залиште заявку — я зателефоную вам особисто та проведу первинну консультацію. Конфіденційність гарантована.</p>
     <div class="contact-info-item">
       <div class="contact-info-icon">📞</div>
-      <span>+38 (048) 771-49-68 · +38 (067) 865-78-24</span>
+      <a href="tel:+380488771-49-68" style="color:inherit; text-decoration:none;">+38 (048) 771-49-68</a>
+      &nbsp;·&nbsp;
+      <a href="tel:+380678657824" style="color:inherit; text-decoration:none;">+38 (067) 865-78-24</a>
     </div>
     <div class="contact-info-item">
       <div class="contact-info-icon">✉️</div>
-      <span>odessaadvokat@gmail.com</span>
+      <a href="mailto:odessaadvokat@gmail.com" style="color:inherit; text-decoration:none;">odessaadvokat@gmail.com</a>
     </div>
     <div class="contact-info-item">
       <div class="contact-info-icon">📍</div>
@@ -861,14 +994,14 @@
       <div id="form-content">
         <div class="form-title">Залишити заявку</div>
         <p class="form-sub">Передзвонимо протягом 2 годин у робочий час</p>
-        <form id="callbackForm" onsubmit="submitForm(event)">
+        <form id="callbackForm" onsubmit="submitForm(event)" novalidate>
           <div class="form-group">
             <label class="form-label" for="name">Ваше ім'я</label>
-            <input type="text" id="name" class="form-control" placeholder="Наприклад, Олена" required>
+            <input type="text" id="name" class="form-control" placeholder="Наприклад, Олена" required autocomplete="name">
           </div>
           <div class="form-group">
             <label class="form-label" for="phone">Номер телефону</label>
-            <input type="tel" id="phone" class="form-control" placeholder="+38 (___) ___-__-__" required>
+            <input type="tel" id="phone" class="form-control" placeholder="+38 (___) ___-__-__" required autocomplete="tel">
           </div>
           <div class="form-group">
             <label class="form-label" for="problem">Коротко опишіть ситуацію</label>
@@ -897,25 +1030,44 @@
 const TG_TOKEN = "8655022362:AAEQvj64eLKQit_-8JZs952gEdDPRLAXeIU";
 const TG_CHAT  = "773747636";
 
-// VISITOR COUNTER
+/* ── Burger menu ── */
+const burger     = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+burger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+  burger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── Visitor counter ── */
 (function() {
-  const BASE = 1247;
+  const BASE       = 1247;
   const START_DATE = new Date("2024-09-01");
   const daysPassed = Math.floor((Date.now() - START_DATE) / 86400000);
-  const total = BASE + daysPassed * 3 + Math.floor(Math.random() * 5);
-  let displayed = total - 12;
-  const el = document.getElementById("visit-count");
+  const total      = BASE + daysPassed * 3 + Math.floor(Math.random() * 5);
+  let   displayed  = total - 12;
+  const el         = document.getElementById("visit-count");
+
   const timer = setInterval(() => {
     displayed++;
     el.textContent = displayed.toLocaleString("uk-UA");
     if (displayed >= total) clearInterval(timer);
   }, 80);
+
   const onlineEl = document.getElementById("online-now");
   function updateOnline() { onlineEl.textContent = Math.floor(Math.random() * 4) + 1; }
   updateOnline();
   setInterval(updateOnline, 40000);
 })();
 
+/* ── Review form ── */
 async function submitReview(e) {
   e.preventDefault();
   const name  = document.getElementById('r-name').value.trim();
@@ -923,20 +1075,23 @@ async function submitReview(e) {
   const text  = document.getElementById('r-text').value.trim();
   if (!name || !text) return;
 
-  const now = new Date().toLocaleString('uk-UA', {timeZone:'Europe/Kyiv'});
+  const now = new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' });
   const msg = `💬 *Новий відгук*\n\n👤 *Автор:* ${name}\n${stars}\n📝 ${text}\n\n⏰ ${now}`;
 
   try {
     await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({chat_id: TG_CHAT, text: msg, parse_mode:'Markdown'})
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT, text: msg, parse_mode: 'Markdown' })
     });
-  } catch(_) {}
+  } catch (_) {}
 
   e.target.reset();
   document.getElementById('review-success').style.display = 'block';
 }
+
+/* ── Callback form ── */
+async function submitForm(e) {
   e.preventDefault();
   const name    = document.getElementById('name').value.trim();
   const phone   = document.getElementById('phone').value.trim();
@@ -947,16 +1102,16 @@ async function submitReview(e) {
   btn.textContent = 'Надсилаємо…';
   btn.disabled = true;
 
-  const now = new Date().toLocaleString('uk-UA', {timeZone:'Europe/Kyiv'});
+  const now  = new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' });
   const text = `🔔 *Нова заявка з сайту*\n\n👤 *Ім'я:* ${name}\n📞 *Телефон:* ${phone}${problem ? '\n📝 *Ситуація:* ' + problem : ''}\n\n⏰ ${now}`;
 
   try {
     await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({chat_id: TG_CHAT, text, parse_mode:'Markdown'})
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT, text, parse_mode: 'Markdown' })
     });
-  } catch(_) {}
+  } catch (_) {}
 
   document.getElementById('form-content').style.display = 'none';
   document.getElementById('successMsg').classList.add('show');
