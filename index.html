@@ -896,74 +896,95 @@
 <script>
 const TG_TOKEN = "8655022362:AAEQvj64eLKQit_-8JZs952gEdDPRLAXeIU";
 const TG_CHAT  = "773747636";
-
-// VISITOR COUNTER
+ 
+/* ── Burger menu ── */
+const burger     = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+ 
+burger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+ 
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+  burger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+ 
+/* ── Visitor counter ── */
 (function() {
-  const BASE = 1247;
+  const BASE       = 1247;
   const START_DATE = new Date("2024-09-01");
   const daysPassed = Math.floor((Date.now() - START_DATE) / 86400000);
-  const total = BASE + daysPassed * 3 + Math.floor(Math.random() * 5);
-  let displayed = total - 12;
-  const el = document.getElementById("visit-count");
+  const total      = BASE + daysPassed * 3 + Math.floor(Math.random() * 5);
+  let   displayed  = total - 12;
+  const el         = document.getElementById("visit-count");
+ 
   const timer = setInterval(() => {
     displayed++;
     el.textContent = displayed.toLocaleString("uk-UA");
     if (displayed >= total) clearInterval(timer);
   }, 80);
+ 
   const onlineEl = document.getElementById("online-now");
   function updateOnline() { onlineEl.textContent = Math.floor(Math.random() * 4) + 1; }
   updateOnline();
   setInterval(updateOnline, 40000);
 })();
-
+ 
+/* ── Review form ── */
 async function submitReview(e) {
   e.preventDefault();
   const name  = document.getElementById('r-name').value.trim();
   const stars = document.getElementById('r-stars').value;
   const text  = document.getElementById('r-text').value.trim();
   if (!name || !text) return;
-
-  const now = new Date().toLocaleString('uk-UA', {timeZone:'Europe/Kyiv'});
+ 
+  const now = new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' });
   const msg = `💬 *Новий відгук*\n\n👤 *Автор:* ${name}\n${stars}\n📝 ${text}\n\n⏰ ${now}`;
-
+ 
   try {
     await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({chat_id: TG_CHAT, text: msg, parse_mode:'Markdown'})
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT, text: msg, parse_mode: 'Markdown' })
     });
-  } catch(_) {}
-
+  } catch (_) {}
+ 
   e.target.reset();
   document.getElementById('review-success').style.display = 'block';
 }
-
+ 
+/* ── Callback form ── */
 async function submitForm(e) {
   e.preventDefault();
   const name    = document.getElementById('name').value.trim();
   const phone   = document.getElementById('phone').value.trim();
   const problem = document.getElementById('problem').value.trim();
   if (!name || !phone) return;
-
+ 
   const btn = e.target.querySelector('.form-submit');
   btn.textContent = 'Надсилаємо…';
   btn.disabled = true;
-
-  const now = new Date().toLocaleString('uk-UA', {timeZone:'Europe/Kyiv'});
+ 
+  const now  = new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' });
   const text = `🔔 *Нова заявка з сайту*\n\n👤 *Ім'я:* ${name}\n📞 *Телефон:* ${phone}${problem ? '\n📝 *Ситуація:* ' + problem : ''}\n\n⏰ ${now}`;
-
+ 
   try {
     await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({chat_id: TG_CHAT, text, parse_mode:'Markdown'})
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT, text, parse_mode: 'Markdown' })
     });
-  } catch(_) {}
-
+  } catch (_) {}
+ 
   document.getElementById('form-content').style.display = 'none';
   document.getElementById('successMsg').classList.add('show');
 }
 </script>
-
+ 
 </body>
 </html>
+ 
