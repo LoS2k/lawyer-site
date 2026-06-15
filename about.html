@@ -3,448 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Валентина Грішина — Адвокат в Одесі</title>
+<title>Про мене — Валентина Грішина, Адвокат</title>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<meta name="description" content="Адвокат Валентина Грішина в Одесі. Кримінальне, цивільне, сімейне право. Свідоцтво №1848. Тел: +38 048 771-49-68">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --navy: #1a2640; --navy-light: #253450; --gold: #b8953a; --gold-light: #d4aa54;
-  --cream: #f8f6f1; --text: #1a2640; --muted: #5a6478; --border: rgba(26,38,64,0.12); --white: #ffffff;
-}
+:root { --navy:#1a2640; --gold:#b8953a; --gold-light:#d4aa54; --cream:#f8f6f1; --text:#1a2640; --muted:#5a6478; --border:rgba(26,38,64,0.12); --white:#ffffff; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; font-weight: 300; color: var(--text); background: var(--white); line-height: 1.7; font-size: 16px; overflow-x: hidden; }
-
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.1rem 4rem;
-  background: rgba(255,255,255,0.97); border-bottom: 0.5px solid var(--border); backdrop-filter: blur(8px);
-}
-.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); text-decoration: none; letter-spacing: 0.02em; }
-.nav-logo span { color: var(--gold); }
-.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-.nav-links a { text-decoration: none; color: var(--muted); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
-.nav-links a:hover { color: var(--navy); }
-.nav-cta { background: var(--navy) !important; color: var(--white) !important; padding: 0.5rem 1.2rem; border-radius: 2px; transition: background 0.2s !important; }
-.nav-cta:hover { background: var(--gold) !important; }
-
-/* Burger */
-.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; z-index: 300; }
-.burger span { display: block; width: 24px; height: 1.5px; background: var(--navy); transition: all 0.3s; transform-origin: center; }
-.burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.burger.open span:nth-child(2) { opacity: 0; }
-.burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-/* Mobile menu */
-.mobile-menu {
-  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 150;
-  background: var(--navy); flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: 1.1rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-.mobile-menu a:hover { color: var(--gold); }
-.mobile-menu .m-cta { color: var(--gold) !important; font-weight: 500; }
-
-/* ── HERO ── */
-.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 4rem; }
-.hero-left {
-  background: var(--navy); display: flex; flex-direction: column; justify-content: center;
-  padding: 5rem 4rem 5rem 4rem; position: relative; overflow: hidden;
-}
-.hero-left::before { content: ''; position: absolute; top: 0; right: 0; width: 1px; height: 100%; background: var(--gold); opacity: 0.3; }
-.hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
-.hero-title { font-family: 'Cormorant Garamond', serif; font-size: 3.6rem; font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 1.2rem; }
-.hero-title em { font-style: italic; color: var(--gold-light); }
-.hero-desc { color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.8; max-width: 400px; margin-bottom: 2rem; }
-.hero-btn {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: var(--gold); color: var(--white); text-decoration: none;
-  padding: 0.85rem 1.8rem; font-size: 0.82rem; font-weight: 500;
-  letter-spacing: 0.06em; text-transform: uppercase; border-radius: 2px;
-  transition: background 0.2s; align-self: flex-start;
-}
-.hero-btn:hover { background: var(--gold-light); }
-.hero-stats { margin-top: 3rem; display: flex; gap: 2rem; padding-top: 1.8rem; border-top: 0.5px solid rgba(255,255,255,0.1); }
-.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; color: var(--gold-light); line-height: 1; }
-.stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); margin-top: 0.3rem; }
-.hero-right { background: var(--cream); position: relative; display: flex; align-items: stretch; }
-  .hero-photo-placeholder {
-    width: 100%; background: #e8e4dd;
-    display: flex; align-items: stretch; position: relative; min-height: 400px;
-  }
-  .hero-photo-placeholder img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-.hero-badge {
-  position: absolute; bottom: 1.5rem; left: -1.2rem;
-  background: var(--white); padding: 0.9rem 1.2rem;
-  border-left: 3px solid var(--gold); box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-}
-.hero-badge-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--navy); }
-.hero-badge-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; }
-
-/* ── COUNTER BAR ── */
-.counter-bar {
-  background: var(--cream); border-bottom: 0.5px solid var(--border);
-  padding: 0.75rem 4rem; display: flex; align-items: center; justify-content: flex-end; gap: 2rem;
-}
-.counter-item { display: flex; align-items: center; gap: 0.6rem; }
-.counter-dot { width: 7px; height: 7px; border-radius: 50%; background: #4caf50; box-shadow: 0 0 0 2px rgba(76,175,80,0.2); }
-.counter-label { font-size: 0.75rem; color: var(--muted); }
-.counter-val { font-size: 0.82rem; font-weight: 500; color: var(--navy); }
-.counter-sep { width: 0.5px; height: 16px; background: var(--border); }
-
-/* ── SECTION BASE ── */
-section { padding: 5rem 4rem; }
-.section-eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
-.section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 400; color: var(--navy); line-height: 1.2; margin-bottom: 0.9rem; }
-.section-lead { color: var(--muted); max-width: 560px; line-height: 1.85; font-size: 0.95rem; }
-.divider { width: 44px; height: 1px; background: var(--gold); margin: 1rem 0; }
-.section-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.8rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; transition: color 0.2s; }
-.section-link:hover { color: var(--gold); }
-
-/* ── ABOUT (preview) ── */
-#about { background: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-.about-list { list-style: none; margin-top: 1.4rem; display: flex; flex-direction: column; gap: 0.8rem; }
-.about-list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.9rem; color: var(--muted); }
-.about-list li::before { content: ''; width: 5px; height: 5px; background: var(--gold); border-radius: 50%; margin-top: 0.55rem; flex-shrink: 0; }
-.team-block { margin-top: 1.4rem; padding: 1rem 1.2rem; border: 0.5px solid var(--border); border-left: 3px solid var(--gold); border-radius: 4px; background: rgba(184,149,58,0.03); }
-.team-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
-.team-text { font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
-.cred-list { display: flex; flex-direction: column; gap: 0.9rem; }
-.cred-card { padding: 1.2rem 1.4rem; border: 0.5px solid var(--border); border-left: 3px solid var(--gold); border-radius: 4px; }
-.cred-year { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.25rem; }
-.cred-title { font-weight: 500; color: var(--navy); font-size: 0.9rem; }
-.cred-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
-
-/* ── SERVICES ── */
-#services { background: var(--cream); text-align: center; }
-#services .section-eyebrow, #services .section-title, #services .section-lead { margin-left: auto; margin-right: auto; }
-#services .divider { margin: 1rem auto; }
-.services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2.5rem; text-align: left; }
-.service-card { background: var(--white); padding: 1.8rem; border-radius: 4px; border: 0.5px solid var(--border); transition: border-color 0.2s, transform 0.2s; }
-.service-card:hover { border-color: var(--gold); transform: translateY(-2px); }
-.service-icon { width: 40px; height: 40px; background: rgba(184,149,58,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.2rem; }
-.service-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
-.service-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
-
-/* ── CASES (preview 3) ── */
-#cases { background: var(--white); }
-.cases-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2.5rem; }
-.case-card { padding: 1.6rem; border: 0.5px solid var(--border); border-radius: 4px; transition: border-color 0.2s; }
-.case-card:hover { border-color: var(--gold); }
-.case-tag { display: inline-block; font-size: 0.67rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: rgba(184,149,58,0.08); padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 0.7rem; }
-.case-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
-.case-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
-.case-result { margin-top: 0.8rem; font-size: 0.78rem; font-weight: 500; color: #2a7a4b; display: flex; align-items: center; gap: 0.4rem; }
-.case-result::before { content: '✓'; width: 16px; height: 16px; background: rgba(42,122,75,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.6rem; flex-shrink: 0; }
-
-/* ── MAP ── */
-#map-section { padding: 0; background: var(--white); }
-.map-grid { display: grid; grid-template-columns: 1fr 2fr; }
-.map-info { background: var(--navy); padding: 3rem 2.5rem; display: flex; flex-direction: column; justify-content: center; }
-.map-eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
-.map-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--white); line-height: 1.25; margin-bottom: 1rem; }
-.map-divider { width: 44px; height: 1px; background: var(--gold); margin-bottom: 1.4rem; }
-.map-item { display: flex; gap: 0.8rem; align-items: flex-start; margin-bottom: 0.9rem; }
-.map-icon { width: 34px; height: 34px; background: rgba(255,255,255,0.07); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.9rem; }
-.map-text { font-size: 0.87rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
-.map-btn { margin-top: 1.8rem; display: inline-flex; align-items: center; gap: 0.4rem; background: var(--gold); color: var(--white); text-decoration: none; padding: 0.7rem 1.3rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 2px; transition: background 0.2s; align-self: flex-start; }
-.map-btn:hover { background: var(--gold-light); }
-.map-iframe { width: 100%; height: 100%; min-height: 380px; border: 0; display: block; }
-
-/* ── CONTACT / CALLBACK + BOOKING ── */
-#contact { background: var(--navy); padding: 5rem 4rem; }
-.contact-top { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 3rem; }
-.contact-left .section-title { color: var(--white); }
-.contact-left .section-lead { color: rgba(255,255,255,0.6); }
-.contact-info-item { display: flex; align-items: flex-start; gap: 0.9rem; margin-top: 1.2rem; color: rgba(255,255,255,0.7); font-size: 0.88rem; }
-.contact-icon { width: 34px; height: 34px; background: rgba(255,255,255,0.07); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
-.contact-forms { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.form-box { background: var(--white); padding: 2rem; border-radius: 4px; }
-.form-box-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
-.form-box-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.4rem; }
-.form-group { margin-bottom: 0.9rem; }
-.form-label { display: block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
-.form-control { width: 100%; padding: 0.7rem 0.9rem; border: 0.5px solid var(--border); border-radius: 3px; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--text); background: var(--white); outline: none; transition: border-color 0.2s; appearance: none; }
-.form-control:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,149,58,0.1); }
-.form-control::placeholder { color: rgba(90,100,120,0.4); }
-textarea.form-control { resize: vertical; min-height: 80px; }
-.form-submit { width: 100%; padding: 0.9rem; background: var(--navy); color: var(--white); border: none; border-radius: 3px; font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 0.4rem; }
-.form-submit:hover { background: var(--gold); }
-.form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-.form-notice { font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 0.7rem; }
-.form-success { display: none; text-align: center; padding: 1.5rem 1rem; }
-.form-success.show { display: block; }
-.form-success-icon { width: 44px; height: 44px; background: rgba(42,122,75,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin: 0 auto 0.8rem; }
-.form-success-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.4rem; }
-.form-success-text { font-size: 0.85rem; color: var(--muted); }
-
-/* Slots */
-.slots-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.4rem; margin-top: 0.35rem; }
-.slot { padding: 0.45rem; border: 0.5px solid var(--border); border-radius: 3px; font-size: 0.78rem; text-align: center; cursor: pointer; transition: all 0.18s; color: var(--muted); background: var(--white); font-family: 'Inter', sans-serif; }
-.slot:hover:not(.busy) { border-color: var(--gold); color: var(--navy); }
-.slot.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
-.slot.busy { background: #fef2f2; color: #e57373; border-color: #fecaca; cursor: not-allowed; text-decoration: line-through; font-size: 0.72rem; }
-
-/* ── FOOTER ── */
-footer { background: var(--navy); border-top: 0.5px solid rgba(255,255,255,0.07); padding: 1.8rem 4rem; display: flex; align-items: center; justify-content: space-between; }
-footer .nav-logo { color: rgba(255,255,255,0.8); }
-.footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
-
-/* ── MOBILE ── */
-@media (max-width: 768px) {
-  nav { padding: 1rem 1.2rem; }
-  .nav-links { display: none; }
-  .burger { display: flex; }
-
-  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 3.5rem; }
-  .hero-left { padding: 3rem 1.2rem 2.5rem; }
-  .hero-title { font-size: 2.4rem; }
-  .hero-right { min-height: 260px; }
-  .hero-badge { left: 1rem; bottom: 1rem; }
-  .hero-stats { gap: 1.2rem; flex-wrap: wrap; }
-
-  .counter-bar { padding: 0.65rem 1.2rem; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-  section { padding: 3rem 1.2rem; }
-
-  #about { grid-template-columns: 1fr; gap: 2rem; }
-  .services-grid { grid-template-columns: 1fr; }
-  .cases-grid { grid-template-columns: 1fr; }
-
-  .map-grid { grid-template-columns: 1fr; }
-  .map-info { padding: 2rem 1.2rem; }
-  .map-iframe { min-height: 250px; }
-
-  #contact { padding: 3rem 1.2rem; }
-  .contact-top { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
-  .contact-forms { grid-template-columns: 1fr; gap: 1rem; }
-
-  .slots-grid { grid-template-columns: repeat(4,1fr); }
-
-  footer { padding: 1.4rem 1.2rem; flex-direction: column; gap: 0.4rem; text-align: center; }
-}
+body { font-family:'Inter',sans-serif; font-weight:300; color:var(--text); background:var(--white); line-height:1.7; font-size:16px; }
+nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.25rem 4rem; background:rgba(255,255,255,0.97); border-bottom:0.5px solid var(--border); backdrop-filter:blur(8px); }
+.nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:600; color:var(--navy); letter-spacing:0.02em; text-decoration:none; }
+.nav-logo span { color:var(--gold); }
+.nav-links { display:flex; gap:2rem; list-style:none; }
+.nav-links a { text-decoration:none; color:var(--muted); font-size:0.82rem; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s; }
+.nav-links a:hover { color:var(--navy); }
+.nav-links a.active { color:var(--navy); font-weight:500; }
+.nav-cta { background:var(--navy); color:var(--white) !important; padding:0.55rem 1.4rem; border-radius:2px; }
+.nav-cta:hover { background:var(--gold) !important; }
+.page-hero { background:var(--navy); padding:8rem 4rem 5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+.page-hero-eyebrow { font-size:0.72rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem; }
+.page-hero-title { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:400; color:var(--white); line-height:1.2; margin-bottom:1rem; }
+.page-hero-sub { color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.8; }
+.hero-photo { width:100%; aspect-ratio:3/4; background:linear-gradient(145deg,#2a3a58,#1a2640); border-radius:4px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:0.8rem; letter-spacing:0.1em; max-width:320px; margin-left:auto; }
+section { padding:5rem 4rem; }
+.section-eyebrow { font-size:0.72rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem; }
+.section-title { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:400; color:var(--navy); line-height:1.2; margin-bottom:1rem; }
+.section-lead { color:var(--muted); max-width:620px; line-height:1.85; }
+.divider { width:48px; height:1px; background:var(--gold); margin:1rem 0 1.5rem; }
+.stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-top:3rem; }
+.stat-card { background:var(--cream); padding:1.5rem; border-radius:4px; text-align:center; }
+.stat-num { font-family:'Cormorant Garamond',serif; font-size:2.4rem; color:var(--navy); font-weight:500; line-height:1; }
+.stat-label { font-size:0.78rem; color:var(--muted); margin-top:0.4rem; }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+.cred-list { display:flex; flex-direction:column; gap:1rem; }
+.cred-card { padding:1.2rem 1.5rem 1.2rem 1.8rem; border:0.5px solid var(--border); border-left:3px solid var(--gold); border-radius:4px; }
+.cred-year { font-size:0.7rem; font-weight:500; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase; margin-bottom:0.3rem; }
+.cred-title { font-weight:500; color:var(--navy); font-size:0.95rem; }
+.cred-sub { font-size:0.83rem; color:var(--muted); margin-top:0.15rem; }
+.chart-section { background:var(--cream); }
+.chart-wrap { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; margin-top:2.5rem; }
+.donut-wrap { position:relative; width:220px; height:220px; margin:0 auto; }
+.donut-wrap svg { transform:rotate(-90deg); }
+.donut-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
+.donut-center-num { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:500; color:var(--navy); }
+.donut-center-label { font-size:0.72rem; color:var(--muted); }
+.legend { display:flex; flex-direction:column; gap:0.9rem; }
+.legend-item { display:flex; align-items:center; gap:0.9rem; }
+.legend-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+.legend-name { font-size:0.88rem; color:var(--muted); flex:1; }
+.legend-pct { font-size:0.88rem; font-weight:500; color:var(--navy); }
+.naau-block { background:var(--navy); padding:3rem 4rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; }
+.naau-text { color:rgba(255,255,255,0.7); font-size:0.92rem; max-width:500px; line-height:1.75; }
+.naau-text strong { color:var(--white); font-weight:500; }
+.naau-btn { display:inline-flex; align-items:center; gap:0.5rem; background:var(--gold); color:var(--white); text-decoration:none; padding:0.9rem 1.8rem; font-size:0.82rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px; white-space:nowrap; flex-shrink:0; transition:background 0.2s; }
+.naau-btn:hover { background:var(--gold-light); }
+.counter-wrap { display:flex; align-items:center; gap:1rem; margin-top:1.5rem; padding:1rem 1.4rem; background:rgba(184,149,58,0.08); border-radius:4px; border-left:3px solid var(--gold); }
+.counter-text { font-size:0.88rem; color:var(--muted); line-height:1.6; }
+.counter-num { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500; color:var(--navy); }
+footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.08); padding:2rem 4rem; display:flex; align-items:center; justify-content:space-between; }
+.footer-copy { font-size:0.8rem; color:rgba(255,255,255,0.35); }
+@media(max-width:900px) { nav{padding:1rem 1.5rem;} .nav-links{display:none;} .page-hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;} .hero-photo{display:none;} section{padding:3rem 1.5rem;} .stats-row{grid-template-columns:repeat(2,1fr);} .about-grid{grid-template-columns:1fr;gap:2.5rem;} .chart-wrap{grid-template-columns:1fr;} .naau-block{flex-direction:column;padding:2rem 1.5rem;} footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;} }
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">Адвокат<span> Грішина</span></a>
+  <a href="index.html" class="nav-logo">Грішина<span> &amp; Партнери</span></a>
   <ul class="nav-links">
-    <li><a href="about.html">Про мене</a></li>
-    <li><a href="#services">Послуги</a></li>
+    <li><a href="index.html">Головна</a></li>
+    <li><a href="about.html" class="active">Про мене</a></li>
     <li><a href="cases.html">Портфоліо</a></li>
-    <li><a href="reviews.html">Відгуки</a></li>
     <li><a href="blog.html">Корисне</a></li>
-    <li><a href="#map-section">Контакти</a></li>
+    <li><a href="reviews.html">Відгуки</a></li>
     <li><a href="consultation.html" class="nav-cta">Консультація</a></li>
   </ul>
-  <button class="burger" id="burger" aria-label="Меню">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="about.html" onclick="closeMenu()">Про мене</a>
-  <a href="#services" onclick="closeMenu()">Послуги</a>
-  <a href="cases.html" onclick="closeMenu()">Портфоліо</a>
-  <a href="reviews.html" onclick="closeMenu()">Відгуки</a>
-  <a href="blog.html" onclick="closeMenu()">Корисне</a>
-  <a href="#map-section" onclick="closeMenu()">Контакти</a>
-  <a href="consultation.html" class="m-cta" onclick="closeMenu()">Консультація →</a>
-</div>
-
-<!-- HERO -->
-<section class="hero" style="padding:0;">
-  <div class="hero-left">
-    <p class="hero-eyebrow">Адвокат · Одеса · з 2010 року</p>
-    <h1 class="hero-title">Ваші права —<br><em>під надійним</em><br>захистом</h1>
-    <p class="hero-desc">Досвідчений адвокат у сферах кримінального, цивільного та господарського права. Індивідуальний підхід, повна конфіденційність, результат.</p>
-    <a href="#contact" class="hero-btn">
-      Безкоштовна консультація
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-    </a>
-    <div class="hero-stats">
-      <div><div class="stat-num">15+</div><div class="stat-label">Років практики</div></div>
-      <div><div class="stat-num">340+</div><div class="stat-label">Справ виграно</div></div>
-      <div><div class="stat-num">94%</div><div class="stat-label">Позитивних рішень</div></div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-photo-placeholder"><img src="photo1.jpg" alt="Валентина Грішина — адвокат" loading="eager"></div>
-    <div class="hero-badge">
-      <div class="hero-badge-title">Валентина Грішина</div>
-      <div class="hero-badge-sub">Адвокат, член НААУ</div>
-    </div>
-  </div>
-</section>
-
-<!-- COUNTER BAR -->
-<div class="counter-bar">
-  <div class="counter-item">
-    <div class="counter-dot"></div>
-    <span class="counter-label">Зараз на сайті:</span>
-    <span class="counter-val" id="online-now">2</span>
-  </div>
-  <div class="counter-sep"></div>
-  <div class="counter-item">
-    <span class="counter-label">Всього відвідувань:</span>
-    <span class="counter-val" id="visit-count">—</span>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
+<div class="page-hero">
   <div>
-    <p class="section-eyebrow">Про мене</p>
-    <h2 class="section-title">Досвід, якому<br>можна довіряти</h2>
-    <div class="divider"></div>
-    <p class="section-lead">Більше 15 років захищаю інтереси клієнтів у судах різних інстанцій. Індивідуальний підхід до кожної справи та повна конфіденційність.</p>
-    <div class="team-block">
-      <div class="team-label">Команда</div>
-      <p class="team-text">У роботі мені допомагає досвідчений помічник адвоката — кваліфікований юрист, який бере участь у підготовці документів та супроводі клієнтів.</p>
+    <p class="page-hero-eyebrow">Про мене</p>
+    <h1 class="page-hero-title">Валентина Грішина</h1>
+    <p class="page-hero-sub">Адвокат з 2010 року. Свідоцтво №1848. Індивідуальна адвокатська діяльність в Одесі — захист інтересів клієнтів у кримінальних, цивільних та господарських справах.</p>
+    <div class="counter-wrap" id="counter-wrap">
+      <div>
+        <div class="counter-num" id="counter-text">...</div>
+        <div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem;">практикую право</div>
+      </div>
     </div>
-    <ul class="about-list">
-      <li>Захист у кримінальних провадженнях будь-якої складності</li>
-      <li>Цивільні спори: нерухомість, сімейне право, спадщина</li>
-      <li>Супровід бізнесу та господарські суперечки</li>
-      <li>Участь у справах на всіх інстанціях включно з апеляцією</li>
-    </ul>
-    <a href="about.html" class="section-link">Детальніше про мене →</a>
   </div>
-  <div class="cred-list">
-    <div class="cred-card">
-      <div class="cred-year">2010</div>
-      <div class="cred-title">Свідоцтво адвоката України №1848</div>
-      <div class="cred-sub">Одеська КДКА, Рада адвокатів Одеської обл.</div>
+  <div class="hero-photo" style="background:#e8e4dd; overflow:hidden;"><img src="photo2.jpg" alt="Валентина Грішина" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
+</div>
+
+<section>
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Років практики</div>
     </div>
-    <div class="cred-card">
-      <div class="cred-year">2019</div>
-      <div class="cred-title">Підвищення адвокатської кваліфікації</div>
-      <div class="cred-sub">Виконано ✓</div>
+    <div class="stat-card">
+      <div class="stat-num">340+</div>
+      <div class="stat-label">Справ завершено</div>
     </div>
-    <div class="cred-card">
-      <div class="cred-year">2020</div>
-      <div class="cred-title">Підвищення адвокатської кваліфікації</div>
-      <div class="cred-sub">Виконано ✓</div>
+    <div class="stat-card">
+      <div class="stat-num">94%</div>
+      <div class="stat-label">Позитивних рішень</div>
     </div>
-    <div class="cred-card">
-      <div class="cred-year">2021</div>
-      <div class="cred-title">Підвищення адвокатської кваліфікації</div>
-      <div class="cred-sub">Виконано ✓</div>
+    <div class="stat-card">
+      <div class="stat-num">5.0</div>
+      <div class="stat-label">Рейтинг клієнтів</div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <p class="section-eyebrow">Послуги</p>
-  <h2 class="section-title">Що я можу<br>зробити для вас</h2>
+<section style="background:var(--white);padding-top:0;">
+  <div class="about-grid">
+    <div>
+      <p class="section-eyebrow">Біографія</p>
+      <h2 class="section-title">Шлях в праві</h2>
+      <div class="divider"></div>
+      <p class="section-lead">З 2010 року веду приватну адвокатську практику в Одесі. За цей час пройшла шлях від складних кримінальних справ до комплексного супроводу бізнесу. Кожна справа — це не просто юридична задача, а доля людини, якій я несу відповідальність.</p>
+      <p style="color:var(--muted);line-height:1.85;margin-top:1rem;font-size:0.95rem;">Регулярно підвищую кваліфікацію — 2019, 2020, 2021 роки. Дотримуюсь принципів адвокатської етики та повної конфіденційності. У роботі маю досвідченого помічника адвоката, що дозволяє надавати повний спектр юридичної допомоги.</p>
+    </div>
+    <div>
+      <p class="section-eyebrow">Освіта і сертифікати</p>
+      <h2 class="section-title">Кваліфікація</h2>
+      <div class="divider"></div>
+      <div class="cred-list">
+        <div class="cred-card">
+          <div class="cred-year">2010</div>
+          <div class="cred-title">Свідоцтво адвоката України №1848</div>
+          <div class="cred-sub">Одеська КДКА, Рада адвокатів Одеської області</div>
+        </div>
+        <div class="cred-card">
+          <div class="cred-year">2019</div>
+          <div class="cred-title">Підвищення адвокатської кваліфікації</div>
+          <div class="cred-sub">Виконано ✓</div>
+        </div>
+        <div class="cred-card">
+          <div class="cred-year">2020</div>
+          <div class="cred-title">Підвищення адвокатської кваліфікації</div>
+          <div class="cred-sub">Виконано ✓</div>
+        </div>
+        <div class="cred-card">
+          <div class="cred-year">2021</div>
+          <div class="cred-title">Підвищення адвокатської кваліфікації</div>
+          <div class="cred-sub">Виконано ✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chart-section">
+  <p class="section-eyebrow">Статистика</p>
+  <h2 class="section-title">Розподіл справ за категоріями</h2>
   <div class="divider"></div>
-  <p class="section-lead">Комплексний правовий захист: від первинної консультації до виконання судового рішення.</p>
-  <div class="services-grid">
-    <div class="service-card"><div class="service-icon">⚖️</div><div class="service-title">Кримінальний захист</div><p class="service-desc">Захист підозрюваних та обвинувачених на всіх стадіях кримінального провадження.</p></div>
-    <div class="service-card"><div class="service-icon">🏠</div><div class="service-title">Нерухомість і майно</div><p class="service-desc">Спори щодо права власності, договорів купівлі-продажу, оренди та незаконних рішень.</p></div>
-    <div class="service-card"><div class="service-icon">👨‍👩‍👧</div><div class="service-title">Сімейне право</div><p class="service-desc">Розлучення, поділ майна, встановлення опіки над дітьми, аліменти.</p></div>
-    <div class="service-card"><div class="service-icon">📋</div><div class="service-title">Господарські спори</div><p class="service-desc">Захист інтересів підприємців та компаній. Стягнення боргів, корпоративні конфлікти.</p></div>
-    <div class="service-card"><div class="service-icon">📜</div><div class="service-title">Спадкові справи</div><p class="service-desc">Визнання заповітів, вступ у спадщину, оскарження незаконного позбавлення прав.</p></div>
-    <div class="service-card"><div class="service-icon">🛡️</div><div class="service-title">Адміністративні справи</div><p class="service-desc">Оскарження рішень органів державної влади та місцевого самоврядування.</p></div>
+  <div class="chart-wrap">
+    <div class="donut-wrap">
+      <svg width="220" height="220" viewBox="0 0 220 220">
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#f0ede6" stroke-width="28"/>
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#1a2640" stroke-width="28" stroke-dasharray="120.6 382.1" stroke-dashoffset="0"/>
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#b8953a" stroke-width="28" stroke-dasharray="95.5 382.1" stroke-dashoffset="-120.6"/>
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#5a6478" stroke-width="28" stroke-dasharray="76.4 382.1" stroke-dashoffset="-216.1"/>
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#d4aa54" stroke-width="28" stroke-dasharray="57.3 382.1" stroke-dashoffset="-292.5"/>
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#2a3a58" stroke-width="28" stroke-dasharray="32.8 382.1" stroke-dashoffset="-349.8"/>
+      </svg>
+      <div class="donut-center">
+        <div class="donut-center-num">340+</div>
+        <div class="donut-center-label">справ</div>
+      </div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#1a2640"></div><span class="legend-name">Кримінальне право</span><span class="legend-pct">32%</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#b8953a"></div><span class="legend-name">Цивільні спори</span><span class="legend-pct">25%</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#5a6478"></div><span class="legend-name">Сімейне право</span><span class="legend-pct">20%</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#d4aa54"></div><span class="legend-name">Господарські справи</span><span class="legend-pct">15%</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#2a3a58"></div><span class="legend-name">Адміністративні</span><span class="legend-pct">8%</span></div>
+    </div>
   </div>
 </section>
 
-<!-- CASES (preview — 3 справи) -->
-<section id="cases" style="background:var(--cream);">
-  <p class="section-eyebrow">Портфоліо</p>
-  <h2 class="section-title">Вибрані справи</h2>
-  <div class="divider"></div>
-  <p class="section-lead">Реальні справи — реальні результати. Деталі змінені задля конфіденційності клієнтів.</p>
-  <div class="cases-grid">
-    <div class="case-card">
-      <span class="case-tag">Кримінальне</span>
-      <div class="case-title">Закриття провадження щодо підприємця</div>
-      <p class="case-desc">Ухилення від сплати податків 4,2 млн грн. Доведено відсутність умислу.</p>
-      <div class="case-result">Провадження закрито, виправданий</div>
-    </div>
-    <div class="case-card">
-      <span class="case-tag">Нерухомість</span>
-      <div class="case-title">Повернення квартири після шахрайства</div>
-      <p class="case-desc">Підробка документів. Три інстанції — угоду визнано недійсною.</p>
-      <div class="case-result">Право власності відновлено</div>
-    </div>
-    <div class="case-card">
-      <span class="case-tag">Сімейне</span>
-      <div class="case-title">Визначення місця проживання дитини</div>
-      <p class="case-desc">Батько незаконно вивіз дитину за кордон. Повернення через міжнародні механізми.</p>
-      <div class="case-result">Дитина повернута, опіку встановлено</div>
-    </div>
+<div class="naau-block">
+  <div class="naau-text">
+    <strong>Офіційна перевірка статусу адвоката</strong><br>
+    Свідоцтво №1848 від 02.02.2010. Грішина Валентина Олександрівна зареєстрована в Єдиному реєстрі адвокатів України. Ви можете перевірити статус на офіційному сайті НААУ.
   </div>
-  <a href="cases.html" class="section-link">Всі справи →</a>
-</section>
-
-
-<!-- CTA BANNER -->
-<section style="background:var(--navy); padding:4rem; text-align:center;">
-  <p style="font-size:0.72rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem;">Готові розпочати?</p>
-  <h2 style="font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:400; color:var(--white); line-height:1.2; margin-bottom:1rem;">Запишіться на консультацію</h2>
-  <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; max-width:480px; margin:0 auto 2rem; line-height:1.8;">Перша консультація безкоштовно. Зворотній дзвінок, онлайн-запис, чеклист документів — все на сторінці консультації.</p>
-  <a href="consultation.html" style="display:inline-flex; align-items:center; gap:0.5rem; background:var(--gold); color:var(--white); text-decoration:none; padding:1rem 2.4rem; font-size:0.85rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; border-radius:2px; transition:background 0.2s;">
-    Записатися на консультацію
-    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+  <a href="https://erau.unba.org.ua/" target="_blank" class="naau-btn">
+    Перевірити в реєстрі НААУ →
   </a>
-</section>
+</div>
 
-<!-- FOOTER -->
 <footer>
-  <a href="index.html" class="nav-logo">Адвокат<span> Грішина</span></a>
+  <a href="index.html" class="nav-logo">Грішина<span> &amp; Партнери</span></a>
   <p class="footer-copy">© 2025 Валентина Грішина. Адвокат, свідоцтво №1848 від 02.02.2010</p>
 </footer>
 
 <script>
-const TG_TOKEN = '8655022362:AAEQvj64eLKQit_-8JZs952gEdDPRLAXeIU';
-const TG_CHAT  = '773747636';
-
-async function tgSend(text) {
-  try {
-    const r = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TG_CHAT, text, parse_mode: 'Markdown' })
-    });
-    const d = await r.json();
-    if (!d.ok) console.error('TG error:', d);
-  } catch(e) { console.error('TG fetch error:', e); }
+function updateCounter() {
+  const start = new Date('2010-02-02');
+  const now = new Date();
+  const diff = now - start;
+  const years = Math.floor(diff / (365.25*24*3600*1000));
+  const months = Math.floor((diff % (365.25*24*3600*1000)) / (30.44*24*3600*1000));
+  const days = Math.floor((diff % (30.44*24*3600*1000)) / (24*3600*1000));
+  document.getElementById('counter-text').textContent = years + ' р. ' + months + ' міс. ' + days + ' дн.';
 }
-
-/* ── Burger ── */
-const burger = document.getElementById('burger');
-const menu   = document.getElementById('mobileMenu');
-burger.addEventListener('click', () => {
-  const open = menu.classList.toggle('open');
-  burger.classList.toggle('open', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-});
-function closeMenu() {
-  menu.classList.remove('open');
-  burger.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-/* ── Counter ── */
-(function() {
-  const base  = 1247;
-  const days  = Math.floor((Date.now() - new Date('2024-09-01')) / 86400000);
-  const total = base + days * 3 + Math.floor(Math.random() * 5);
-  let cur = total - 12;
-  const el = document.getElementById('visit-count');
-  const t  = setInterval(() => { el.textContent = (++cur).toLocaleString('uk-UA'); if (cur >= total) clearInterval(t); }, 80);
-  const on = document.getElementById('online-now');
-  function upd() { on.textContent = Math.floor(Math.random() * 4) + 1; }
-  upd(); setInterval(upd, 40000);
-})();
+updateCounter();
+setInterval(updateCounter, 60000);
 </script>
 </body>
 </html>
