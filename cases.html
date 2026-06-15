@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Портфоліо справ — Валентина Грішина, Адвокат</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --navy:#1a2640; --gold:#b8953a; --gold-light:#d4aa54; --cream:#f8f6f1; --text:#1a2640; --muted:#5a6478; --border:rgba(26,38,64,0.12); --white:#ffffff; }
+body { font-family:'Inter',sans-serif; font-weight:300; color:var(--text); background:var(--white); line-height:1.7; }
+nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.25rem 4rem; background:rgba(255,255,255,0.97); border-bottom:0.5px solid var(--border); backdrop-filter:blur(8px); }
+.nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:600; color:var(--navy); text-decoration:none; }
+.nav-logo span { color:var(--gold); }
+.nav-links { display:flex; gap:2rem; list-style:none; }
+.nav-links a { text-decoration:none; color:var(--muted); font-size:0.82rem; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s; }
+.nav-links a:hover,.nav-links a.active { color:var(--navy); }
+.nav-cta { background:var(--navy); color:var(--white) !important; padding:0.55rem 1.4rem; border-radius:2px; }
+.page-hero { background:var(--navy); padding:8rem 4rem 4rem; }
+.page-hero-eyebrow { font-size:0.72rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem; }
+.page-hero-title { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:400; color:var(--white); line-height:1.2; margin-bottom:1rem; }
+.page-hero-sub { color:rgba(255,255,255,0.6); font-size:0.95rem; max-width:560px; line-height:1.8; }
+section { padding:4rem 4rem; }
+.section-eyebrow { font-size:0.72rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem; }
+.section-title { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:400; color:var(--navy); line-height:1.2; margin-bottom:1rem; }
+.divider { width:48px; height:1px; background:var(--gold); margin:1rem 0 1.5rem; }
+.filters { display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+.filter-btn { padding:0.45rem 1.1rem; border:0.5px solid var(--border); border-radius:2px; background:var(--white); color:var(--muted); font-size:0.78rem; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; font-family:'Inter',sans-serif; }
+.filter-btn:hover,.filter-btn.active { background:var(--navy); color:var(--white); border-color:var(--navy); }
+.cases-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; }
+.case-card { padding:2rem; border:0.5px solid var(--border); border-radius:4px; transition:border-color 0.2s, transform 0.2s; }
+.case-card:hover { border-color:var(--gold); transform:translateY(-2px); }
+.case-tag { display:inline-block; font-size:0.7rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); background:rgba(184,149,58,0.08); padding:0.25rem 0.7rem; border-radius:2px; margin-bottom:0.9rem; }
+.case-title { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:500; color:var(--navy); margin-bottom:0.5rem; }
+.case-desc { font-size:0.88rem; color:var(--muted); line-height:1.75; }
+.case-result { margin-top:1rem; font-size:0.82rem; font-weight:500; color:#2a7a4b; display:flex; align-items:center; gap:0.5rem; }
+.case-result::before { content:'✓'; width:18px; height:18px; background:rgba(42,122,75,0.1); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:0.65rem; }
+.hidden { display:none; }
+footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.08); padding:2rem 4rem; display:flex; align-items:center; justify-content:space-between; }
+.footer-copy { font-size:0.8rem; color:rgba(255,255,255,0.35); }
+@media(max-width:900px) { nav{padding:1rem 1.5rem;} .nav-links{display:none;} .page-hero{padding:6rem 1.5rem 3rem;} section{padding:3rem 1.5rem;} .cases-grid{grid-template-columns:1fr;} footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;} }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Грішина<span> &amp; Партнери</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Головна</a></li>
+    <li><a href="about.html">Про мене</a></li>
+    <li><a href="cases.html" class="active">Портфоліо</a></li>
+    <li><a href="blog.html">Корисне</a></li>
+    <li><a href="reviews.html">Відгуки</a></li>
+    <li><a href="consultation.html" class="nav-cta">Консультація</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <p class="page-hero-eyebrow">Портфоліо</p>
+  <h1 class="page-hero-title">Справи та результати</h1>
+  <p class="page-hero-sub">Реальні справи — реальні результати. Імена та деталі змінено задля конфіденційності клієнтів.</p>
+</div>
+
+<section>
+  <div class="filters">
+    <button class="filter-btn active" onclick="filter('all',this)">Всі справи</button>
+    <button class="filter-btn" onclick="filter('criminal',this)">Кримінальне</button>
+    <button class="filter-btn" onclick="filter('civil',this)">Цивільне</button>
+    <button class="filter-btn" onclick="filter('family',this)">Сімейне</button>
+    <button class="filter-btn" onclick="filter('business',this)">Господарське</button>
+    <button class="filter-btn" onclick="filter('admin',this)">Адміністративне</button>
+  </div>
+
+  <div class="cases-grid" id="cases-grid">
+    <div class="case-card" data-cat="criminal">
+      <span class="case-tag">Кримінальне право</span>
+      <div class="case-title">Закриття провадження щодо підприємця</div>
+      <p class="case-desc">Клієнту інкримінували ухилення від сплати податків на суму 4,2 млн грн. Доведено відсутність умислу та добровільне виправлення помилки.</p>
+      <div class="case-result">Провадження закрито, клієнт виправданий</div>
+    </div>
+    <div class="case-card" data-cat="civil">
+      <span class="case-tag">Нерухомість</span>
+      <div class="case-title">Повернення квартири після шахрайської угоди</div>
+      <p class="case-desc">Клієнт втратив квартиру внаслідок підробки документів. Через три інстанції домоглися визнання угоди недійсною.</p>
+      <div class="case-result">Право власності повністю відновлено</div>
+    </div>
+    <div class="case-card" data-cat="family">
+      <span class="case-tag">Сімейне право</span>
+      <div class="case-title">Визначення місця проживання дитини</div>
+      <p class="case-desc">Батько незаконно вивіз дитину за кордон. Через міжнародні механізми домоглися повернення дитини до матері.</p>
+      <div class="case-result">Дитина повернута, опіку встановлено</div>
+    </div>
+    <div class="case-card" data-cat="business">
+      <span class="case-tag">Господарський суд</span>
+      <div class="case-title">Стягнення боргу з недобросовісного партнера</div>
+      <p class="case-desc">Компанія не отримала оплату за товар 1,8 млн грн. Стягнуто борг та штрафні санкції через господарський суд.</p>
+      <div class="case-result">Стягнуто 2,3 млн грн з санкціями</div>
+    </div>
+    <div class="case-card" data-cat="criminal">
+      <span class="case-tag">Кримінальне право</span>
+      <div class="case-title">Виправдання за статтею про хуліганство</div>
+      <p class="case-desc">Клієнта звинуватили у хуліганстві на підставі свідчень зацікавлених осіб. Доведено відсутність події злочину.</p>
+      <div class="case-result">Виправдувальний вирок суду</div>
+    </div>
+    <div class="case-card" data-cat="admin">
+      <span class="case-tag">Адміністративне</span>
+      <div class="case-title">Оскарження незаконного рішення міськради</div>
+      <p class="case-desc">Незаконне вилучення земельної ділянки під забудову. Рішення міськради скасовано через адміністративний суд.</p>
+      <div class="case-result">Рішення скасовано, ділянку повернуто</div>
+    </div>
+    <div class="case-card" data-cat="family">
+      <span class="case-tag">Сімейне право</span>
+      <div class="case-title">Поділ спільного майна подружжя</div>
+      <p class="case-desc">Спір щодо квартири, автомобіля та бізнесу після розлучення. Справедливий поділ з урахуванням внеску кожного з подружжя.</p>
+      <div class="case-result">Мирова угода на вигідних умовах</div>
+    </div>
+    <div class="case-card" data-cat="civil">
+      <span class="case-tag">Спадщина</span>
+      <div class="case-title">Визнання заповіту недійсним</div>
+      <p class="case-desc">Заповіт складено під тиском та в стані, що виключав розуміння своїх дій. Проведено психіатричну експертизу.</p>
+      <div class="case-result">Заповіт визнано недійсним судом</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="nav-logo">Грішина<span> &amp; Партнери</span></a>
+  <p class="footer-copy">© 2025 Валентина Грішина. Адвокат, свідоцтво №1848 від 02.02.2010</p>
+</footer>
+
+<script>
+function filter(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.case-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) card.classList.remove('hidden');
+    else card.classList.add('hidden');
+  });
+}
+</script>
+</body>
+</html>
