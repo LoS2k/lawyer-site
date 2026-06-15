@@ -3,584 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Валентина Грішина — Адвокат</title>
+<title>Валентина Грішина — Адвокат в Одесі</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #1a2640; --navy-light: #253450; --gold: #b8953a; --gold-light: #d4aa54;
+  --cream: #f8f6f1; --text: #1a2640; --muted: #5a6478; --border: rgba(26,38,64,0.12); --white: #ffffff;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; font-weight: 300; color: var(--text); background: var(--white); line-height: 1.7; font-size: 16px; overflow-x: hidden; }
 
-  :root {
-    --navy: #1a2640;
-    --navy-light: #253450;
-    --gold: #b8953a;
-    --gold-light: #d4aa54;
-    --cream: #f8f6f1;
-    --text: #1a2640;
-    --muted: #5a6478;
-    --border: rgba(26,38,64,0.12);
-    --white: #ffffff;
-  }
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 4rem;
+  background: rgba(255,255,255,0.97); border-bottom: 0.5px solid var(--border); backdrop-filter: blur(8px);
+}
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); text-decoration: none; letter-spacing: 0.02em; }
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--muted); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--navy); }
+.nav-cta { background: var(--navy) !important; color: var(--white) !important; padding: 0.5rem 1.2rem; border-radius: 2px; transition: background 0.2s !important; }
+.nav-cta:hover { background: var(--gold) !important; }
 
-  html { scroll-behavior: smooth; }
+/* Burger */
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; z-index: 300; }
+.burger span { display: block; width: 24px; height: 1.5px; background: var(--navy); transition: all 0.3s; transform-origin: center; }
+.burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    color: var(--text);
-    background: var(--white);
-    line-height: 1.7;
-    font-size: 16px;
-  }
+/* Mobile menu */
+.mobile-menu {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 150;
+  background: var(--navy); flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: 1.1rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-menu .m-cta { color: var(--gold) !important; font-weight: 500; }
 
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 4rem;
-    background: rgba(255,255,255,0.97);
-    border-bottom: 0.5px solid var(--border);
-    backdrop-filter: blur(8px);
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--navy);
-    letter-spacing: 0.02em;
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--gold); }
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-  .nav-links a {
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--navy); }
-  .nav-cta {
-    background: var(--navy);
-    color: var(--white) !important;
-    padding: 0.55rem 1.4rem;
-    border-radius: 2px;
-    transition: background 0.2s !important;
-  }
-  .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+/* ── HERO ── */
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 4rem; }
+.hero-left {
+  background: var(--navy); display: flex; flex-direction: column; justify-content: center;
+  padding: 5rem 4rem 5rem 4rem; position: relative; overflow: hidden;
+}
+.hero-left::before { content: ''; position: absolute; top: 0; right: 0; width: 1px; height: 100%; background: var(--gold); opacity: 0.3; }
+.hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: 3.6rem; font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 1.2rem; }
+.hero-title em { font-style: italic; color: var(--gold-light); }
+.hero-desc { color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.8; max-width: 400px; margin-bottom: 2rem; }
+.hero-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--gold); color: var(--white); text-decoration: none;
+  padding: 0.85rem 1.8rem; font-size: 0.82rem; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; border-radius: 2px;
+  transition: background 0.2s; align-self: flex-start;
+}
+.hero-btn:hover { background: var(--gold-light); }
+.hero-stats { margin-top: 3rem; display: flex; gap: 2rem; padding-top: 1.8rem; border-top: 0.5px solid rgba(255,255,255,0.1); }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; color: var(--gold-light); line-height: 1; }
+.stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); margin-top: 0.3rem; }
+.hero-right { background: var(--cream); position: relative; display: flex; align-items: stretch; }
+.hero-photo-placeholder {
+  width: 100%; background: linear-gradient(145deg,#ddd9d0,#c8c3b8);
+  display: flex; align-items: center; justify-content: center; position: relative; min-height: 400px;
+}
+.hero-photo-placeholder::after { content: 'ФОТО АДВОКАТА'; font-size: 0.72rem; letter-spacing: 0.12em; color: rgba(26,38,64,0.25); font-weight: 500; }
+.hero-badge {
+  position: absolute; bottom: 1.5rem; left: -1.2rem;
+  background: var(--white); padding: 0.9rem 1.2rem;
+  border-left: 3px solid var(--gold); box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+}
+.hero-badge-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--navy); }
+.hero-badge-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 5rem;
-  }
-  .hero-left {
-    background: var(--navy);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 6rem 5rem 6rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-left::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 1px;
-    height: 100%;
-    background: var(--gold);
-    opacity: 0.4;
-  }
-  .hero-eyebrow {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-  }
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3.8rem;
-    font-weight: 400;
-    line-height: 1.15;
-    color: var(--white);
-    margin-bottom: 1.5rem;
-  }
-  .hero-title em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
-  .hero-desc {
-    color: rgba(255,255,255,0.65);
-    font-size: 1rem;
-    line-height: 1.8;
-    max-width: 420px;
-    margin-bottom: 2.5rem;
-  }
-  .hero-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: var(--gold);
-    color: var(--white);
-    text-decoration: none;
-    padding: 0.9rem 2rem;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    border-radius: 2px;
-    transition: background 0.2s;
-    align-self: flex-start;
-  }
-  .hero-btn:hover { background: var(--gold-light); }
-  .hero-btn svg { width: 16px; height: 16px; }
-  .hero-stats {
-    margin-top: 3.5rem;
-    display: flex;
-    gap: 2.5rem;
-    padding-top: 2rem;
-    border-top: 0.5px solid rgba(255,255,255,0.12);
-  }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem;
-    font-weight: 500;
-    color: var(--gold-light);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.5);
-    margin-top: 0.3rem;
-    letter-spacing: 0.04em;
-  }
-  .hero-right {
-    background: var(--cream);
-    position: relative;
-    display: flex;
-    align-items: stretch;
-  }
-  .hero-photo-placeholder {
-    width: 100%;
-    background: linear-gradient(145deg, #ddd9d0 0%, #c8c3b8 100%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-  }
-  .hero-photo-placeholder::after {
-    content: 'ФОТО АДВОКАТА';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    color: rgba(26,38,64,0.3);
-    font-weight: 500;
-  }
-  .hero-badge {
-    position: absolute;
-    bottom: 2rem;
-    left: -1.5rem;
-    background: var(--white);
-    padding: 1rem 1.4rem;
-    border-left: 3px solid var(--gold);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-  }
-  .hero-badge-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--navy);
-  }
-  .hero-badge-sub {
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-top: 0.2rem;
-  }
+/* ── COUNTER BAR ── */
+.counter-bar {
+  background: var(--cream); border-bottom: 0.5px solid var(--border);
+  padding: 0.75rem 4rem; display: flex; align-items: center; justify-content: flex-end; gap: 2rem;
+}
+.counter-item { display: flex; align-items: center; gap: 0.6rem; }
+.counter-dot { width: 7px; height: 7px; border-radius: 50%; background: #4caf50; box-shadow: 0 0 0 2px rgba(76,175,80,0.2); }
+.counter-label { font-size: 0.75rem; color: var(--muted); }
+.counter-val { font-size: 0.82rem; font-weight: 500; color: var(--navy); }
+.counter-sep { width: 0.5px; height: 16px; background: var(--border); }
 
-  /* SECTION BASE */
-  section { padding: 5rem 4rem; }
-  .section-eyebrow {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.8rem;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.6rem;
-    font-weight: 400;
-    color: var(--navy);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  .section-lead {
-    color: var(--muted);
-    max-width: 580px;
-    line-height: 1.85;
-  }
-  .divider {
-    width: 48px;
-    height: 1px;
-    background: var(--gold);
-    margin: 1.2rem 0;
-  }
+/* ── SECTION BASE ── */
+section { padding: 5rem 4rem; }
+.section-eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 400; color: var(--navy); line-height: 1.2; margin-bottom: 0.9rem; }
+.section-lead { color: var(--muted); max-width: 560px; line-height: 1.85; font-size: 0.95rem; }
+.divider { width: 44px; height: 1px; background: var(--gold); margin: 1rem 0; }
+.section-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.8rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; transition: color 0.2s; }
+.section-link:hover { color: var(--gold); }
 
-  /* ABOUT */
-  #about {
-    background: var(--white);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-  .about-list {
-    list-style: none;
-    margin-top: 1.8rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-  }
-  .about-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.8rem;
-    font-size: 0.95rem;
-    color: var(--muted);
-  }
-  .about-list li::before {
-    content: '';
-    width: 5px;
-    height: 5px;
-    background: var(--gold);
-    border-radius: 50%;
-    margin-top: 0.6rem;
-    flex-shrink: 0;
-  }
-  .about-credentials {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .credential-card {
-    padding: 1.4rem 1.6rem;
-    border: 0.5px solid var(--border);
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-  }
-  .credential-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--gold);
-  }
-  .credential-year {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    color: var(--gold);
-    margin-bottom: 0.3rem;
-    text-transform: uppercase;
-  }
-  .credential-title {
-    font-weight: 500;
-    color: var(--navy);
-    font-size: 0.95rem;
-  }
-  .credential-sub {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-top: 0.15rem;
-  }
+/* ── ABOUT (preview) ── */
+#about { background: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.about-list { list-style: none; margin-top: 1.4rem; display: flex; flex-direction: column; gap: 0.8rem; }
+.about-list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.9rem; color: var(--muted); }
+.about-list li::before { content: ''; width: 5px; height: 5px; background: var(--gold); border-radius: 50%; margin-top: 0.55rem; flex-shrink: 0; }
+.team-block { margin-top: 1.4rem; padding: 1rem 1.2rem; border: 0.5px solid var(--border); border-left: 3px solid var(--gold); border-radius: 4px; background: rgba(184,149,58,0.03); }
+.team-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+.team-text { font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
+.cred-list { display: flex; flex-direction: column; gap: 0.9rem; }
+.cred-card { padding: 1.2rem 1.4rem; border: 0.5px solid var(--border); border-left: 3px solid var(--gold); border-radius: 4px; }
+.cred-year { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.25rem; }
+.cred-title { font-weight: 500; color: var(--navy); font-size: 0.9rem; }
+.cred-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
 
-  /* SERVICES */
-  #services {
-    background: var(--cream);
-    text-align: center;
-  }
-  #services .section-eyebrow,
-  #services .section-title,
-  #services .section-lead { margin-left: auto; margin-right: auto; }
-  #services .divider { margin: 1.2rem auto; }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.2rem;
-    margin-top: 3rem;
-    text-align: left;
-  }
-  .service-card {
-    background: var(--white);
-    padding: 2rem 1.8rem;
-    border-radius: 4px;
-    border: 0.5px solid var(--border);
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .service-card:hover {
-    border-color: var(--gold);
-    transform: translateY(-3px);
-  }
-  .service-icon {
-    width: 44px;
-    height: 44px;
-    background: rgba(184,149,58,0.1);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.2rem;
-    font-size: 1.3rem;
-  }
-  .service-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 0.6rem;
-  }
-  .service-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.75;
-  }
+/* ── SERVICES ── */
+#services { background: var(--cream); text-align: center; }
+#services .section-eyebrow, #services .section-title, #services .section-lead { margin-left: auto; margin-right: auto; }
+#services .divider { margin: 1rem auto; }
+.services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2.5rem; text-align: left; }
+.service-card { background: var(--white); padding: 1.8rem; border-radius: 4px; border: 0.5px solid var(--border); transition: border-color 0.2s, transform 0.2s; }
+.service-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.service-icon { width: 40px; height: 40px; background: rgba(184,149,58,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.2rem; }
+.service-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+.service-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
 
-  /* CASES */
-  #cases { background: var(--white); }
-  .cases-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-  .case-card {
-    padding: 2rem;
-    border: 0.5px solid var(--border);
-    border-radius: 4px;
-    position: relative;
-  }
-  .case-tag {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    background: rgba(184,149,58,0.08);
-    padding: 0.25rem 0.7rem;
-    border-radius: 2px;
-    margin-bottom: 0.9rem;
-  }
-  .case-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 0.5rem;
-  }
-  .case-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.75;
-  }
-  .case-result {
-    margin-top: 1rem;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: #2a7a4b;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  .case-result::before {
-    content: '✓';
-    width: 18px;
-    height: 18px;
-    background: rgba(42,122,75,0.1);
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.65rem;
-  }
+/* ── CASES (preview 3) ── */
+#cases { background: var(--white); }
+.cases-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2.5rem; }
+.case-card { padding: 1.6rem; border: 0.5px solid var(--border); border-radius: 4px; transition: border-color 0.2s; }
+.case-card:hover { border-color: var(--gold); }
+.case-tag { display: inline-block; font-size: 0.67rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: rgba(184,149,58,0.08); padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 0.7rem; }
+.case-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
+.case-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
+.case-result { margin-top: 0.8rem; font-size: 0.78rem; font-weight: 500; color: #2a7a4b; display: flex; align-items: center; gap: 0.4rem; }
+.case-result::before { content: '✓'; width: 16px; height: 16px; background: rgba(42,122,75,0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.6rem; flex-shrink: 0; }
 
-  /* CALLBACK */
-  #contact {
-    background: var(--navy);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-  .contact-left .section-title { color: var(--white); }
-  .contact-left .section-lead { color: rgba(255,255,255,0.6); max-width: 400px; }
-  .contact-info-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    color: rgba(255,255,255,0.75);
-    font-size: 0.9rem;
-  }
-  .contact-info-icon {
-    width: 38px;
-    height: 38px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-  .callback-form {
-    background: var(--white);
-    padding: 2.5rem;
-    border-radius: 4px;
-  }
-  .form-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 0.4rem;
-  }
-  .form-sub {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 1.8rem;
-  }
-  .form-group { margin-bottom: 1.1rem; }
-  .form-label {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.4rem;
-  }
-  .form-control {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 0.5px solid var(--border);
-    border-radius: 3px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 300;
-    color: var(--text);
-    background: var(--white);
-    transition: border-color 0.2s;
-    outline: none;
-    appearance: none;
-  }
-  .form-control:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,149,58,0.1); }
-  .form-control::placeholder { color: rgba(90,100,120,0.45); }
-  textarea.form-control { resize: vertical; min-height: 100px; }
-  .form-submit {
-    width: 100%;
-    padding: 1rem;
-    background: var(--navy);
-    color: var(--white);
-    border: none;
-    border-radius: 3px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 0.5rem;
-  }
-  .form-submit:hover { background: var(--gold); }
-  .form-notice {
-    font-size: 0.75rem;
-    color: var(--muted);
-    text-align: center;
-    margin-top: 0.9rem;
-    line-height: 1.6;
-  }
+/* ── MAP ── */
+#map-section { padding: 0; background: var(--white); }
+.map-grid { display: grid; grid-template-columns: 1fr 2fr; }
+.map-info { background: var(--navy); padding: 3rem 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+.map-eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
+.map-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--white); line-height: 1.25; margin-bottom: 1rem; }
+.map-divider { width: 44px; height: 1px; background: var(--gold); margin-bottom: 1.4rem; }
+.map-item { display: flex; gap: 0.8rem; align-items: flex-start; margin-bottom: 0.9rem; }
+.map-icon { width: 34px; height: 34px; background: rgba(255,255,255,0.07); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.9rem; }
+.map-text { font-size: 0.87rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
+.map-btn { margin-top: 1.8rem; display: inline-flex; align-items: center; gap: 0.4rem; background: var(--gold); color: var(--white); text-decoration: none; padding: 0.7rem 1.3rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 2px; transition: background 0.2s; align-self: flex-start; }
+.map-btn:hover { background: var(--gold-light); }
+.map-iframe { width: 100%; height: 100%; min-height: 380px; border: 0; display: block; }
 
-  /* SUCCESS */
-  .success-msg {
-    display: none;
-    text-align: center;
-    padding: 2rem;
-  }
-  .success-msg.show { display: block; }
-  .success-icon {
-    width: 52px;
-    height: 52px;
-    background: rgba(42,122,75,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    margin: 0 auto 1rem;
-  }
-  .success-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    color: var(--navy);
-    margin-bottom: 0.5rem;
-  }
-  .success-text { font-size: 0.9rem; color: var(--muted); }
+/* ── CONTACT / CALLBACK + BOOKING ── */
+#contact { background: var(--navy); padding: 5rem 4rem; }
+.contact-top { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 3rem; }
+.contact-left .section-title { color: var(--white); }
+.contact-left .section-lead { color: rgba(255,255,255,0.6); }
+.contact-info-item { display: flex; align-items: flex-start; gap: 0.9rem; margin-top: 1.2rem; color: rgba(255,255,255,0.7); font-size: 0.88rem; }
+.contact-icon { width: 34px; height: 34px; background: rgba(255,255,255,0.07); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+.contact-forms { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.form-box { background: var(--white); padding: 2rem; border-radius: 4px; }
+.form-box-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
+.form-box-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.4rem; }
+.form-group { margin-bottom: 0.9rem; }
+.form-label { display: block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+.form-control { width: 100%; padding: 0.7rem 0.9rem; border: 0.5px solid var(--border); border-radius: 3px; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--text); background: var(--white); outline: none; transition: border-color 0.2s; appearance: none; }
+.form-control:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,149,58,0.1); }
+.form-control::placeholder { color: rgba(90,100,120,0.4); }
+textarea.form-control { resize: vertical; min-height: 80px; }
+.form-submit { width: 100%; padding: 0.9rem; background: var(--navy); color: var(--white); border: none; border-radius: 3px; font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 0.4rem; }
+.form-submit:hover { background: var(--gold); }
+.form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.form-notice { font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 0.7rem; }
+.form-success { display: none; text-align: center; padding: 1.5rem 1rem; }
+.form-success.show { display: block; }
+.form-success-icon { width: 44px; height: 44px; background: rgba(42,122,75,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin: 0 auto 0.8rem; }
+.form-success-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.4rem; }
+.form-success-text { font-size: 0.85rem; color: var(--muted); }
 
-  /* FOOTER */
-  footer {
-    background: var(--navy);
-    border-top: 0.5px solid rgba(255,255,255,0.08);
-    padding: 2rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  footer .nav-logo { color: rgba(255,255,255,0.85); font-size: 1.05rem; }
-  footer .nav-logo span { color: var(--gold); }
-  .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+/* Slots */
+.slots-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.4rem; margin-top: 0.35rem; }
+.slot { padding: 0.45rem; border: 0.5px solid var(--border); border-radius: 3px; font-size: 0.78rem; text-align: center; cursor: pointer; transition: all 0.18s; color: var(--muted); background: var(--white); font-family: 'Inter', sans-serif; }
+.slot:hover:not(.busy) { border-color: var(--gold); color: var(--navy); }
+.slot.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.slot.busy { background: #fef2f2; color: #e57373; border-color: #fecaca; cursor: not-allowed; text-decoration: line-through; font-size: 0.72rem; }
 
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 4rem 1.5rem; }
-    .hero-title { font-size: 2.6rem; }
-    .hero-right { min-height: 300px; }
-    section { padding: 3.5rem 1.5rem; }
-    #about, #contact { grid-template-columns: 1fr; gap: 2.5rem; }
-    .services-grid { grid-template-columns: 1fr; }
-    .cases-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
-  }
+/* ── FOOTER ── */
+footer { background: var(--navy); border-top: 0.5px solid rgba(255,255,255,0.07); padding: 1.8rem 4rem; display: flex; align-items: center; justify-content: space-between; }
+footer .nav-logo { color: rgba(255,255,255,0.8); }
+.footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.2rem; }
+  .nav-links { display: none; }
+  .burger { display: flex; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 3.5rem; }
+  .hero-left { padding: 3rem 1.2rem 2.5rem; }
+  .hero-title { font-size: 2.4rem; }
+  .hero-right { min-height: 260px; }
+  .hero-badge { left: 1rem; bottom: 1rem; }
+  .hero-stats { gap: 1.2rem; flex-wrap: wrap; }
+
+  .counter-bar { padding: 0.65rem 1.2rem; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  section { padding: 3rem 1.2rem; }
+
+  #about { grid-template-columns: 1fr; gap: 2rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .cases-grid { grid-template-columns: 1fr; }
+
+  .map-grid { grid-template-columns: 1fr; }
+  .map-info { padding: 2rem 1.2rem; }
+  .map-iframe { min-height: 250px; }
+
+  #contact { padding: 3rem 1.2rem; }
+  .contact-top { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
+  .contact-forms { grid-template-columns: 1fr; gap: 1rem; }
+
+  .slots-grid { grid-template-columns: repeat(4,1fr); }
+
+  footer { padding: 1.4rem 1.2rem; flex-direction: column; gap: 0.4rem; text-align: center; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Грішина<span> &amp; Партнери</span></a>
+  <a href="index.html" class="nav-logo">Грішина<span> &amp; Партнери</span></a>
   <ul class="nav-links">
     <li><a href="about.html">Про мене</a></li>
     <li><a href="#services">Послуги</a></li>
@@ -590,31 +240,36 @@
     <li><a href="#map-section">Контакти</a></li>
     <li><a href="consultation.html" class="nav-cta">Консультація</a></li>
   </ul>
+  <button class="burger" id="burger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html" onclick="closeMenu()">Про мене</a>
+  <a href="#services" onclick="closeMenu()">Послуги</a>
+  <a href="cases.html" onclick="closeMenu()">Портфоліо</a>
+  <a href="reviews.html" onclick="closeMenu()">Відгуки</a>
+  <a href="blog.html" onclick="closeMenu()">Корисне</a>
+  <a href="#map-section" onclick="closeMenu()">Контакти</a>
+  <a href="consultation.html" class="m-cta" onclick="closeMenu()">Консультація →</a>
+</div>
+
 <!-- HERO -->
-<section class="hero" style="padding: 0;">
+<section class="hero" style="padding:0;">
   <div class="hero-left">
     <p class="hero-eyebrow">Адвокат · Одеса · з 2010 року</p>
     <h1 class="hero-title">Ваші права —<br><em>під надійним</em><br>захистом</h1>
     <p class="hero-desc">Досвідчений адвокат у сферах кримінального, цивільного та господарського права. Індивідуальний підхід, повна конфіденційність, результат.</p>
     <a href="#contact" class="hero-btn">
       Безкоштовна консультація
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
     </a>
     <div class="hero-stats">
-      <div>
-        <div class="stat-num">15+</div>
-        <div class="stat-label">Років практики</div>
-      </div>
-      <div>
-        <div class="stat-num">340+</div>
-        <div class="stat-label">Справ виграно</div>
-      </div>
-      <div>
-        <div class="stat-num">94%</div>
-        <div class="stat-label">Позитивних рішень</div>
-      </div>
+      <div><div class="stat-num">15+</div><div class="stat-label">Років практики</div></div>
+      <div><div class="stat-num">340+</div><div class="stat-label">Справ виграно</div></div>
+      <div><div class="stat-num">94%</div><div class="stat-label">Позитивних рішень</div></div>
     </div>
   </div>
   <div class="hero-right">
@@ -627,16 +282,16 @@
 </section>
 
 <!-- COUNTER BAR -->
-<div style="background:var(--cream); border-bottom:0.5px solid var(--border); padding:0.9rem 4rem; display:flex; align-items:center; justify-content:flex-end; gap:2.5rem;">
-  <div style="display:flex; align-items:center; gap:0.7rem;">
-    <div style="width:8px; height:8px; border-radius:50%; background:#4caf50; box-shadow:0 0 0 3px rgba(76,175,80,0.2);"></div>
-    <span style="font-size:0.78rem; color:var(--muted);">Зараз на сайті:</span>
-    <span style="font-size:0.85rem; font-weight:500; color:var(--navy);" id="online-now">2</span>
+<div class="counter-bar">
+  <div class="counter-item">
+    <div class="counter-dot"></div>
+    <span class="counter-label">Зараз на сайті:</span>
+    <span class="counter-val" id="online-now">2</span>
   </div>
-  <div style="width:0.5px; height:18px; background:var(--border);"></div>
-  <div style="display:flex; align-items:center; gap:0.7rem;">
-    <span style="font-size:0.78rem; color:var(--muted);">Всього відвідувань:</span>
-    <span style="font-size:0.85rem; font-weight:500; color:var(--navy);" id="visit-count">—</span>
+  <div class="counter-sep"></div>
+  <div class="counter-item">
+    <span class="counter-label">Всього відвідувань:</span>
+    <span class="counter-val" id="visit-count">—</span>
   </div>
 </div>
 
@@ -646,39 +301,39 @@
     <p class="section-eyebrow">Про мене</p>
     <h2 class="section-title">Досвід, якому<br>можна довіряти</h2>
     <div class="divider"></div>
-    <p class="section-lead">Більше 9 років я захищаю інтереси клієнтів у судах різних інстанцій. Моя робота — це не просто юридична техніка, це щира відданість кожній справі та повага до людини в складній ситуації.</p>
-    <div style="margin-top:1.4rem; padding:1.2rem 1.4rem; border:0.5px solid var(--border); border-radius:4px; border-left: 3px solid var(--gold); background: rgba(184,149,58,0.04);">
-      <div style="font-size:0.72rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">Команда</div>
-      <p style="font-size:0.9rem; color:var(--muted); line-height:1.75; margin:0;">У роботі мені допомагає досвідчений помічник адвоката — кваліфікований юрист, який бере безпосередню участь у підготовці документів, аналізі справ та супроводі клієнтів. Разом ми забезпечуємо повний юридичний захист на кожному етапі.</p>
+    <p class="section-lead">Більше 15 років захищаю інтереси клієнтів у судах різних інстанцій. Індивідуальний підхід до кожної справи та повна конфіденційність.</p>
+    <div class="team-block">
+      <div class="team-label">Команда</div>
+      <p class="team-text">У роботі мені допомагає досвідчений помічник адвоката — кваліфікований юрист, який бере участь у підготовці документів та супроводі клієнтів.</p>
     </div>
     <ul class="about-list">
       <li>Захист у кримінальних провадженнях будь-якої складності</li>
       <li>Цивільні спори: нерухомість, сімейне право, спадщина</li>
       <li>Супровід бізнесу та господарські суперечки</li>
-      <li>Участь у справах на всіх інстанціях, включно з апеляцією</li>
-      <li>Консультації на всіх стадіях провадження</li>
+      <li>Участь у справах на всіх інстанціях включно з апеляцією</li>
     </ul>
+    <a href="about.html" class="section-link">Детальніше про мене →</a>
   </div>
-  <div class="about-credentials">
-    <div class="credential-card">
-      <div class="credential-year">2010</div>
-      <div class="credential-title">Свідоцтво адвоката України №1848</div>
-      <div class="credential-sub">Одеська КДКА, Рада адвокатів Одеської області</div>
+  <div class="cred-list">
+    <div class="cred-card">
+      <div class="cred-year">2010</div>
+      <div class="cred-title">Свідоцтво адвоката України №1848</div>
+      <div class="cred-sub">Одеська КДКА, Рада адвокатів Одеської обл.</div>
     </div>
-    <div class="credential-card">
-      <div class="credential-year">2019</div>
-      <div class="credential-title">Підвищення адвокатської кваліфікації</div>
-      <div class="credential-sub">Статус: виконано</div>
+    <div class="cred-card">
+      <div class="cred-year">2019</div>
+      <div class="cred-title">Підвищення адвокатської кваліфікації</div>
+      <div class="cred-sub">Виконано ✓</div>
     </div>
-    <div class="credential-card">
-      <div class="credential-year">2020</div>
-      <div class="credential-title">Підвищення адвокатської кваліфікації</div>
-      <div class="credential-sub">Статус: виконано</div>
+    <div class="cred-card">
+      <div class="cred-year">2020</div>
+      <div class="cred-title">Підвищення адвокатської кваліфікації</div>
+      <div class="cred-sub">Виконано ✓</div>
     </div>
-    <div class="credential-card">
-      <div class="credential-year">2021</div>
-      <div class="credential-title">Підвищення адвокатської кваліфікації</div>
-      <div class="credential-sub">Статус: виконано</div>
+    <div class="cred-card">
+      <div class="cred-year">2021</div>
+      <div class="cred-title">Підвищення адвокатської кваліфікації</div>
+      <div class="cred-sub">Виконано ✓</div>
     </div>
   </div>
 </section>
@@ -690,198 +345,132 @@
   <div class="divider"></div>
   <p class="section-lead">Комплексний правовий захист: від первинної консультації до виконання судового рішення.</p>
   <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon">⚖️</div>
-      <div class="service-title">Кримінальний захист</div>
-      <p class="service-desc">Захист підозрюваних та обвинувачених на всіх стадіях кримінального провадження. Оскарження незаконних рішень.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🏠</div>
-      <div class="service-title">Нерухомість і майно</div>
-      <p class="service-desc">Спори щодо права власності, договорів купівлі-продажу, оренди. Оскарження незаконних рішень органів влади.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">👨‍👩‍👧</div>
-      <div class="service-title">Сімейне право</div>
-      <p class="service-desc">Розлучення, поділ майна, встановлення опіки над дітьми, аліменти. Досудове врегулювання конфліктів.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">📋</div>
-      <div class="service-title">Господарські спори</div>
-      <p class="service-desc">Захист інтересів підприємців та компаній. Договірні спори, стягнення боргів, корпоративні конфлікти.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">📜</div>
-      <div class="service-title">Спадкові справи</div>
-      <p class="service-desc">Визнання заповітів, вступ у спадщину, оскарження незаконного позбавлення спадкових прав.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🛡️</div>
-      <div class="service-title">Адміністративні справи</div>
-      <p class="service-desc">Оскарження рішень органів державної влади та місцевого самоврядування. Захист прав громадян.</p>
-    </div>
+    <div class="service-card"><div class="service-icon">⚖️</div><div class="service-title">Кримінальний захист</div><p class="service-desc">Захист підозрюваних та обвинувачених на всіх стадіях кримінального провадження.</p></div>
+    <div class="service-card"><div class="service-icon">🏠</div><div class="service-title">Нерухомість і майно</div><p class="service-desc">Спори щодо права власності, договорів купівлі-продажу, оренди та незаконних рішень.</p></div>
+    <div class="service-card"><div class="service-icon">👨‍👩‍👧</div><div class="service-title">Сімейне право</div><p class="service-desc">Розлучення, поділ майна, встановлення опіки над дітьми, аліменти.</p></div>
+    <div class="service-card"><div class="service-icon">📋</div><div class="service-title">Господарські спори</div><p class="service-desc">Захист інтересів підприємців та компаній. Стягнення боргів, корпоративні конфлікти.</p></div>
+    <div class="service-card"><div class="service-icon">📜</div><div class="service-title">Спадкові справи</div><p class="service-desc">Визнання заповітів, вступ у спадщину, оскарження незаконного позбавлення прав.</p></div>
+    <div class="service-card"><div class="service-icon">🛡️</div><div class="service-title">Адміністративні справи</div><p class="service-desc">Оскарження рішень органів державної влади та місцевого самоврядування.</p></div>
   </div>
 </section>
 
-<!-- CASES -->
-<section id="cases">
+<!-- CASES (preview — 3 справи) -->
+<section id="cases" style="background:var(--cream);">
   <p class="section-eyebrow">Портфоліо</p>
   <h2 class="section-title">Вибрані справи</h2>
   <div class="divider"></div>
   <p class="section-lead">Реальні справи — реальні результати. Деталі змінені задля конфіденційності клієнтів.</p>
   <div class="cases-grid">
     <div class="case-card">
-      <span class="case-tag">Кримінальне право</span>
+      <span class="case-tag">Кримінальне</span>
       <div class="case-title">Закриття провадження щодо підприємця</div>
-      <p class="case-desc">Клієнту інкримінували ухилення від сплати податків на суму 4,2 млн грн. Вдалося довести відсутність умислу та добровільне виправлення помилки бухгалтерії.</p>
-      <div class="case-result">Провадження закрито, клієнт виправданий</div>
+      <p class="case-desc">Ухилення від сплати податків 4,2 млн грн. Доведено відсутність умислу.</p>
+      <div class="case-result">Провадження закрито, виправданий</div>
     </div>
     <div class="case-card">
       <span class="case-tag">Нерухомість</span>
-      <div class="case-title">Повернення квартири після шахрайської угоди</div>
-      <p class="case-desc">Клієнт втратив квартиру внаслідок підробки документів. Через суди трьох інстанцій домоглися визнання угоди недійсною та повернення майна.</p>
-      <div class="case-result">Право власності повністю відновлено</div>
+      <div class="case-title">Повернення квартири після шахрайства</div>
+      <p class="case-desc">Підробка документів. Три інстанції — угоду визнано недійсною.</p>
+      <div class="case-result">Право власності відновлено</div>
     </div>
     <div class="case-card">
-      <span class="case-tag">Сімейне право</span>
+      <span class="case-tag">Сімейне</span>
       <div class="case-title">Визначення місця проживання дитини</div>
-      <p class="case-desc">Батько незаконно вивіз дитину за кордон. Через міжнародні механізми та суд добилися повернення дитини до матері в Україну.</p>
+      <p class="case-desc">Батько незаконно вивіз дитину за кордон. Повернення через міжнародні механізми.</p>
       <div class="case-result">Дитина повернута, опіку встановлено</div>
     </div>
-    <div class="case-card">
-      <span class="case-tag">Господарський суд</span>
-      <div class="case-title">Стягнення боргу з недобросовісного партнера</div>
-      <p class="case-desc">Компанія-клієнт не отримала оплату за поставлений товар на 1,8 млн грн. Домоглися стягнення боргу та штрафних санкцій.</p>
-      <div class="case-result">Стягнуто 2,3 млн грн з санкціями</div>
-    </div>
   </div>
-</section>
-
-<!-- REVIEWS -->
-<section id="reviews" style="background: var(--cream);">
-  <p class="section-eyebrow">Відгуки</p>
-  <h2 class="section-title">Що кажуть клієнти</h2>
-  <div class="divider"></div>
-  <p class="section-lead">Діліться своїм досвідом співпраці.</p>
-
-  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1.2rem; margin-top:2.5rem;" id="reviews-list">
-    <div style="background:var(--white); padding:1.6rem; border-radius:4px; border:0.5px solid var(--border);">
-      <div style="color:var(--gold); font-size:1rem; margin-bottom:0.8rem;">★★★★★</div>
-      <p style="font-size:0.92rem; color:var(--muted); line-height:1.75; font-style:italic;">"Найкращий адвокат з яким мені довелося працювати. Всі справи виграла."</p>
-      <div style="margin-top:1rem; padding-top:0.8rem; border-top:0.5px solid var(--border);">
-        <div style="font-size:0.85rem; font-weight:500; color:var(--navy);">Анчева Ірина Анатоліївна</div>
-        <div style="font-size:0.75rem; color:var(--muted); margin-top:0.15rem;">15.12.2023</div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:3rem; background:var(--white); padding:2rem; border-radius:4px; border:0.5px solid var(--border); max-width:560px;">
-    <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--navy); margin-bottom:0.3rem;">Залишити відгук</div>
-    <p style="font-size:0.82rem; color:var(--muted); margin-bottom:1.4rem;">Ми цінуємо кожен відгук</p>
-    <form onsubmit="submitReview(event)">
-      <div class="form-group">
-        <label class="form-label">Ваше ім'я</label>
-        <input type="text" id="r-name" class="form-control" placeholder="Ім'я та прізвище" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Оцінка</label>
-        <select id="r-stars" class="form-control">
-          <option value="⭐⭐⭐⭐⭐">★★★★★ — Відмінно</option>
-          <option value="⭐⭐⭐⭐">★★★★ — Добре</option>
-          <option value="⭐⭐⭐">★★★ — Задовільно</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Відгук</label>
-        <textarea id="r-text" class="form-control" rows="3" placeholder="Розкажіть про свій досвід співпраці..." required></textarea>
-      </div>
-      <button type="submit" class="form-submit" style="width:auto; padding:0.75rem 1.8rem;">Надіслати →</button>
-    </form>
-    <div id="review-success" style="display:none; margin-top:1rem; padding:0.9rem 1rem; background:rgba(42,122,75,0.08); border-radius:3px; font-size:0.88rem; color:#2a7a4b;">
-      ✓ Дякуємо за відгук!
-    </div>
-  </div>
+  <a href="cases.html" class="section-link">Всі справи →</a>
 </section>
 
 <!-- MAP -->
-<section id="map-section" style="padding: 0; background: var(--white);">
-  <div style="display:grid; grid-template-columns: 1fr 2fr;">
-    <div style="background:var(--navy); padding:3.5rem 2.5rem; display:flex; flex-direction:column; justify-content:center;">
-      <p style="font-size:0.72rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem;">Як нас знайти</p>
-      <h2 style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:400; color:var(--white); line-height:1.25; margin-bottom:1.2rem;">Адреса офісу</h2>
-      <div style="width:48px; height:1px; background:var(--gold); margin-bottom:1.5rem;"></div>
-      <div style="display:flex; flex-direction:column; gap:1rem;">
-        <div style="display:flex; gap:0.9rem; align-items:flex-start;">
-          <div style="width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">📍</div>
-          <div style="font-size:0.9rem; color:rgba(255,255,255,0.75); line-height:1.6;">м. Одеса, р-н Київський<br>вул. Фонтанська дорога, 16/8, кв. 158</div>
-        </div>
-        <div style="display:flex; gap:0.9rem; align-items:flex-start;">
-          <div style="width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🚌</div>
-          <div style="font-size:0.9rem; color:rgba(255,255,255,0.75); line-height:1.6;">Зупинка «Фонтанська дорога»<br>Маршрути: 185, 195, 205</div>
-        </div>
-        <div style="display:flex; gap:0.9rem; align-items:flex-start;">
-          <div style="width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🚗</div>
-          <div style="font-size:0.9rem; color:rgba(255,255,255,0.75); line-height:1.6;">Є парковка біля будинку</div>
-        </div>
-      </div>
-      <a href="https://maps.google.com/?q=Одеса,+вул.+Фонтанська+дорога,+16/8" target="_blank" style="margin-top:2rem; display:inline-flex; align-items:center; gap:0.5rem; background:var(--gold); color:var(--white); text-decoration:none; padding:0.75rem 1.4rem; font-size:0.82rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px;">Прокласти маршрут →</a>
+<section id="map-section" style="padding:0;">
+  <div class="map-grid">
+    <div class="map-info">
+      <p class="map-eyebrow">Як нас знайти</p>
+      <h2 class="map-title">Адреса офісу</h2>
+      <div class="map-divider"></div>
+      <div class="map-item"><div class="map-icon">📍</div><div class="map-text">м. Одеса, р-н Київський<br>вул. Фонтанська дорога, 16/8, кв. 158</div></div>
+      <div class="map-item"><div class="map-icon">🚌</div><div class="map-text">Зупинка «Фонтанська дорога»<br>Маршрути: 185, 195, 205</div></div>
+      <div class="map-item"><div class="map-icon">🚗</div><div class="map-text">Є парковка біля будинку</div></div>
+      <a href="https://maps.google.com/?q=Одеса,+вул.+Фонтанська+дорога,+16/8" target="_blank" class="map-btn">Прокласти маршрут →</a>
     </div>
-    <div style="min-height:420px;">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2748.5!2d30.7233!3d46.4285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c633b6eaf7c6e3%3A0x1!2z0KTQvtC90YLQsNC90YHRjNC60LAg0LTQvtGA0L7Qs9CwLCAxNi84!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua" width="100%" height="420" style="border:0; display:block;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
+    <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2748.5!2d30.7233!3d46.4285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c633b6eaf7c6e3%3A0x1!2z0KTQvtC90YLQsNC90YHRjNC60LAg0LTQvtGA0L7Qs9CwLCAxNi84!5e0!3m2!1suk!2sua!4v1700000000000" allowfullscreen loading="lazy"></iframe>
   </div>
 </section>
 
-<!-- CONTACT / CALLBACK -->
+<!-- CONTACT -->
 <section id="contact">
-  <div class="contact-left">
-    <p class="section-eyebrow" style="color: var(--gold-light);">Зворотний дзвінок</p>
-    <h2 class="section-title">Розкажіть<br>про свою<br>ситуацію</h2>
-    <div class="divider"></div>
-    <p class="section-lead">Залиште заявку — я зателефоную вам особисто та проведу первинну консультацію. Конфіденційність гарантована.</p>
-    <div class="contact-info-item">
-      <div class="contact-info-icon">📞</div>
-      <span>+38 (048) 771-49-68 · +38 (067) 865-78-24</span>
-    </div>
-    <div class="contact-info-item">
-      <div class="contact-info-icon">✉️</div>
-      <span>odessaadvokat@gmail.com</span>
-    </div>
-    <div class="contact-info-item">
-      <div class="contact-info-icon">📍</div>
-      <span>Одеса, вул. Фонтанська дорога, 16/8</span>
-    </div>
-    <div class="contact-info-item">
-      <div class="contact-info-icon">🕐</div>
-      <span>Пн–Пт: 9:00–19:00 · Сб: 9:00–15:00 · Нд: 10:00–16:00</span>
+  <div class="contact-top">
+    <div class="contact-left">
+      <p class="section-eyebrow" style="color:var(--gold-light);">Зв'язок</p>
+      <h2 class="section-title">Зв'яжіться<br>з нами</h2>
+      <div class="divider"></div>
+      <p class="section-lead">Залиште заявку на зворотній дзвінок або запишіться на зручний час. Конфіденційність гарантована.</p>
+      <div class="contact-info-item"><div class="contact-icon">📞</div><span>+38 (048) 771-49-68<br>+38 (067) 865-78-24</span></div>
+      <div class="contact-info-item"><div class="contact-icon">✉️</div><span>odessaadvokat@gmail.com</span></div>
+      <div class="contact-info-item"><div class="contact-icon">📍</div><span>Одеса, вул. Фонтанська дорога, 16/8</span></div>
+      <div class="contact-info-item"><div class="contact-icon">🕐</div><span>Пн–Пт: 9:00–19:00<br>Сб: 9:00–15:00 · Нд: 10:00–16:00</span></div>
     </div>
   </div>
-  <div>
-    <div class="callback-form">
-      <div id="form-content">
-        <div class="form-title">Залишити заявку</div>
-        <p class="form-sub">Передзвонимо протягом 2 годин у робочий час</p>
-        <form id="callbackForm" onsubmit="submitForm(event)">
-          <div class="form-group">
-            <label class="form-label" for="name">Ваше ім'я</label>
-            <input type="text" id="name" class="form-control" placeholder="Наприклад, Олена" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="phone">Номер телефону</label>
-            <input type="tel" id="phone" class="form-control" placeholder="+38 (___) ___-__-__" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="problem">Коротко опишіть ситуацію</label>
-            <textarea id="problem" class="form-control" placeholder="Наприклад: є спір щодо спадщини, потрібна порада..." rows="4"></textarea>
-          </div>
-          <button type="submit" class="form-submit">Надіслати заявку →</button>
-        </form>
-        <p class="form-notice">🔒 Вся інформація є конфіденційною та охороняється адвокатською таємницею</p>
+
+  <div class="contact-forms">
+    <!-- ФОРМА 1: Зворотній дзвінок -->
+    <div class="form-box">
+      <div id="callback-content">
+        <div class="form-box-title">Зворотній дзвінок</div>
+        <p class="form-box-sub">Передзвонимо протягом 2 годин у робочий час</p>
+        <div class="form-group">
+          <label class="form-label">Ваше ім'я</label>
+          <input type="text" id="cb-name" class="form-control" placeholder="Наприклад, Олена" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Номер телефону</label>
+          <input type="tel" id="cb-phone" class="form-control" placeholder="+38 (___) ___-__-__" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Коротко опишіть ситуацію</label>
+          <textarea id="cb-problem" class="form-control" placeholder="Наприклад: є спір щодо спадщини..." rows="3"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitCallback()">Надіслати заявку →</button>
+        <p class="form-notice">🔒 Адвокатська таємниця гарантована</p>
       </div>
-      <div class="success-msg" id="successMsg">
-        <div class="success-icon">✓</div>
-        <div class="success-title">Заявку отримано!</div>
-        <p class="success-text">Валентина Грішина зв'яжеться з вами найближчим часом.<br>Дякуємо за довіру.</p>
+      <div class="form-success" id="callback-success">
+        <div class="form-success-icon">✓</div>
+        <div class="form-success-title">Заявку отримано!</div>
+        <p class="form-success-text">Валентина зв'яжеться з вами найближчим часом.</p>
+      </div>
+    </div>
+
+    <!-- ФОРМА 2: Запис на прийом -->
+    <div class="form-box">
+      <div id="booking-content">
+        <div class="form-box-title">Записатися на прийом</div>
+        <p class="form-box-sub">Оберіть зручну дату та час</p>
+        <div class="form-group">
+          <label class="form-label">Ваше ім'я</label>
+          <input type="text" id="bk-name" class="form-control" placeholder="Ваше ім'я">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Телефон</label>
+          <input type="tel" id="bk-phone" class="form-control" placeholder="+38 (___) ___-__-__">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Дата</label>
+          <input type="date" id="bk-date" class="form-control" onchange="updateSlots()">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Час</label>
+          <div class="slots-grid" id="slots-grid">
+            <div style="grid-column:1/-1;font-size:0.8rem;color:var(--muted);padding:0.5rem 0;">Оберіть дату вище</div>
+          </div>
+        </div>
+        <button class="form-submit" onclick="submitBooking()">Записатися →</button>
+      </div>
+      <div class="form-success" id="booking-success">
+        <div class="form-success-icon">✓</div>
+        <div class="form-success-title">Запис підтверджено!</div>
+        <p class="form-success-text">Валентина зв'яжеться з вами для підтвердження часу.</p>
       </div>
     </div>
   </div>
@@ -889,102 +478,112 @@
 
 <!-- FOOTER -->
 <footer>
-  <a href="#" class="nav-logo">Грішина<span> &amp; Партнери</span></a>
+  <a href="index.html" class="nav-logo">Грішина<span> &amp; Партнери</span></a>
   <p class="footer-copy">© 2025 Валентина Грішина. Адвокат, свідоцтво №1848 від 02.02.2010</p>
 </footer>
 
 <script>
-const TG_TOKEN = "8655022362:AAEQvj64eLKQit_-8JZs952gEdDPRLAXeIU";
-const TG_CHAT  = "773747636";
- 
-/* ── Burger menu ── */
-const burger     = document.getElementById('burger');
-const mobileMenu = document.getElementById('mobileMenu');
- 
-burger.addEventListener('click', () => {
-  const isOpen = mobileMenu.classList.toggle('open');
-  burger.classList.toggle('open', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-});
- 
-function closeMobileMenu() {
-  mobileMenu.classList.remove('open');
-  burger.classList.remove('open');
-  document.body.style.overflow = '';
-}
- 
-/* ── Visitor counter ── */
-(function() {
-  const BASE       = 1247;
-  const START_DATE = new Date("2024-09-01");
-  const daysPassed = Math.floor((Date.now() - START_DATE) / 86400000);
-  const total      = BASE + daysPassed * 3 + Math.floor(Math.random() * 5);
-  let   displayed  = total - 12;
-  const el         = document.getElementById("visit-count");
- 
-  const timer = setInterval(() => {
-    displayed++;
-    el.textContent = displayed.toLocaleString("uk-UA");
-    if (displayed >= total) clearInterval(timer);
-  }, 80);
- 
-  const onlineEl = document.getElementById("online-now");
-  function updateOnline() { onlineEl.textContent = Math.floor(Math.random() * 4) + 1; }
-  updateOnline();
-  setInterval(updateOnline, 40000);
-})();
- 
-/* ── Review form ── */
-async function submitReview(e) {
-  e.preventDefault();
-  const name  = document.getElementById('r-name').value.trim();
-  const stars = document.getElementById('r-stars').value;
-  const text  = document.getElementById('r-text').value.trim();
-  if (!name || !text) return;
- 
-  const now = new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' });
-  const msg = `💬 *Новий відгук*\n\n👤 *Автор:* ${name}\n${stars}\n📝 ${text}\n\n⏰ ${now}`;
- 
+const TG_TOKEN = '8655022362:AAEQvj64eLKQit_-8JZs952gEdDPRLAXeIU';
+const TG_CHAT  = '773747636';
+
+async function tgSend(text) {
   try {
-    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TG_CHAT, text: msg, parse_mode: 'Markdown' })
-    });
-  } catch (_) {}
- 
-  e.target.reset();
-  document.getElementById('review-success').style.display = 'block';
-}
- 
-/* ── Callback form ── */
-async function submitForm(e) {
-  e.preventDefault();
-  const name    = document.getElementById('name').value.trim();
-  const phone   = document.getElementById('phone').value.trim();
-  const problem = document.getElementById('problem').value.trim();
-  if (!name || !phone) return;
- 
-  const btn = e.target.querySelector('.form-submit');
-  btn.textContent = 'Надсилаємо…';
-  btn.disabled = true;
- 
-  const now  = new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' });
-  const text = `🔔 *Нова заявка з сайту*\n\n👤 *Ім'я:* ${name}\n📞 *Телефон:* ${phone}${problem ? '\n📝 *Ситуація:* ' + problem : ''}\n\n⏰ ${now}`;
- 
-  try {
-    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+    const r = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chat_id: TG_CHAT, text, parse_mode: 'Markdown' })
     });
-  } catch (_) {}
- 
-  document.getElementById('form-content').style.display = 'none';
-  document.getElementById('successMsg').classList.add('show');
+    const d = await r.json();
+    if (!d.ok) console.error('TG error:', d);
+  } catch(e) { console.error('TG fetch error:', e); }
 }
+
+/* ── Burger ── */
+const burger = document.getElementById('burger');
+const menu   = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+function closeMenu() {
+  menu.classList.remove('open');
+  burger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── Counter ── */
+(function() {
+  const base  = 1247;
+  const days  = Math.floor((Date.now() - new Date('2024-09-01')) / 86400000);
+  const total = base + days * 3 + Math.floor(Math.random() * 5);
+  let cur = total - 12;
+  const el = document.getElementById('visit-count');
+  const t  = setInterval(() => { el.textContent = (++cur).toLocaleString('uk-UA'); if (cur >= total) clearInterval(t); }, 80);
+  const on = document.getElementById('online-now');
+  function upd() { on.textContent = Math.floor(Math.random() * 4) + 1; }
+  upd(); setInterval(upd, 40000);
+})();
+
+/* ── Callback ── */
+async function submitCallback() {
+  const name    = document.getElementById('cb-name').value.trim();
+  const phone   = document.getElementById('cb-phone').value.trim();
+  const problem = document.getElementById('cb-problem').value.trim();
+  if (!name || !phone) { alert("Будь ласка, вкажіть ім'я та телефон"); return; }
+  const btn = document.querySelector('#callback-content .form-submit');
+  btn.textContent = 'Надсилаємо…'; btn.disabled = true;
+  const now = new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' });
+  await tgSend(`🔔 *Зворотній дзвінок*\n\n👤 *Ім'я:* ${name}\n📞 *Телефон:* ${phone}${problem ? '\n📝 *Ситуація:* ' + problem : ''}\n\n⏰ ${now}`);
+  document.getElementById('callback-content').style.display = 'none';
+  document.getElementById('callback-success').classList.add('show');
+}
+
+/* ── Booking slots ── */
+const BUSY = { 1: ['10:00','15:00'], 2: ['09:00','14:00'], 3: ['11:00','16:00'], 4: ['10:00'], 5: ['14:00','17:00'] };
+const ALL_SLOTS = ['09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00','18:00'];
+let selectedSlot = null;
+
+function updateSlots() {
+  const date = document.getElementById('bk-date').value;
+  if (!date) return;
+  const dow = new Date(date).getDay();
+  const busy = BUSY[dow] || [];
+  const grid = document.getElementById('slots-grid');
+  grid.innerHTML = '';
+  ALL_SLOTS.forEach(t => {
+    const isBusy = busy.includes(t);
+    const d = document.createElement('button');
+    d.type = 'button';
+    d.className = 'slot' + (isBusy ? ' busy' : '');
+    d.textContent = isBusy ? t + ' ✗' : t;
+    d.title = isBusy ? 'Зайнято' : '';
+    d.disabled = isBusy;
+    if (!isBusy) d.onclick = () => {
+      document.querySelectorAll('.slot').forEach(s => s.classList.remove('active'));
+      d.classList.add('active');
+      selectedSlot = t;
+    };
+    grid.appendChild(d);
+  });
+}
+
+async function submitBooking() {
+  const name  = document.getElementById('bk-name').value.trim();
+  const phone = document.getElementById('bk-phone').value.trim();
+  const date  = document.getElementById('bk-date').value;
+  if (!name || !phone) { alert("Будь ласка, вкажіть ім'я та телефон"); return; }
+  if (!date || !selectedSlot) { alert('Оберіть дату та час'); return; }
+  const btn = document.querySelector('#booking-content .form-submit');
+  btn.textContent = 'Надсилаємо…'; btn.disabled = true;
+  const now = new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' });
+  await tgSend(`📅 *Запис на прийом*\n\n👤 *Ім'я:* ${name}\n📞 *Телефон:* ${phone}\n📆 *Дата:* ${date} о ${selectedSlot}\n\n⏰ ${now}`);
+  document.getElementById('booking-content').style.display = 'none';
+  document.getElementById('booking-success').classList.add('show');
+}
+
+/* Min date */
+document.getElementById('bk-date').min = new Date().toISOString().split('T')[0];
 </script>
- 
 </body>
 </html>
- 
