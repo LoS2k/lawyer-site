@@ -385,97 +385,16 @@ footer .nav-logo { color: rgba(255,255,255,0.8); }
   <a href="cases.html" class="section-link">Всі справи →</a>
 </section>
 
-<!-- MAP -->
-<section id="map-section" style="padding:0;">
-  <div class="map-grid">
-    <div class="map-info">
-      <p class="map-eyebrow">Як нас знайти</p>
-      <h2 class="map-title">Адреса офісу</h2>
-      <div class="map-divider"></div>
-      <div class="map-item"><div class="map-icon">📍</div><div class="map-text">м. Одеса, р-н Київський<br>вул. Фонтанська дорога, 16/8, кв. 158</div></div>
-      <div class="map-item"><div class="map-icon">🚌</div><div class="map-text">Зупинка «Фонтанська дорога»<br>Маршрути: 185, 195, 205</div></div>
-      <div class="map-item"><div class="map-icon">🚗</div><div class="map-text">Є парковка біля будинку</div></div>
-      <a href="https://maps.google.com/?q=Одеса,+вул.+Фонтанська+дорога,+16/8" target="_blank" class="map-btn">Прокласти маршрут →</a>
-    </div>
-    <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2748.5!2d30.7233!3d46.4285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c633b6eaf7c6e3%3A0x1!2z0KTQvtC90YLQsNC90YHRjNC60LAg0LTQvtGA0L7Qs9CwLCAxNi84!5e0!3m2!1suk!2sua!4v1700000000000" allowfullscreen loading="lazy"></iframe>
-  </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-top">
-    <div class="contact-left">
-      <p class="section-eyebrow" style="color:var(--gold-light);">Зв'язок</p>
-      <h2 class="section-title">Зв'яжіться<br>з нами</h2>
-      <div class="divider"></div>
-      <p class="section-lead">Залиште заявку на зворотній дзвінок або запишіться на зручний час. Конфіденційність гарантована.</p>
-      <div class="contact-info-item"><div class="contact-icon">📞</div><span>+38 (048) 771-49-68<br>+38 (067) 865-78-24</span></div>
-      <div class="contact-info-item"><div class="contact-icon">✉️</div><span>odessaadvokat@gmail.com</span></div>
-      <div class="contact-info-item"><div class="contact-icon">📍</div><span>Одеса, вул. Фонтанська дорога, 16/8</span></div>
-      <div class="contact-info-item"><div class="contact-icon">🕐</div><span>Пн–Пт: 9:00–19:00<br>Сб: 9:00–15:00 · Нд: 10:00–16:00</span></div>
-    </div>
-  </div>
-
-  <div class="contact-forms">
-    <!-- ФОРМА 1: Зворотній дзвінок -->
-    <div class="form-box">
-      <div id="callback-content">
-        <div class="form-box-title">Зворотній дзвінок</div>
-        <p class="form-box-sub">Передзвонимо протягом 2 годин у робочий час</p>
-        <div class="form-group">
-          <label class="form-label">Ваше ім'я</label>
-          <input type="text" id="cb-name" class="form-control" placeholder="Наприклад, Олена" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Номер телефону</label>
-          <input type="tel" id="cb-phone" class="form-control" placeholder="+38 (___) ___-__-__" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Коротко опишіть ситуацію</label>
-          <textarea id="cb-problem" class="form-control" placeholder="Наприклад: є спір щодо спадщини..." rows="3"></textarea>
-        </div>
-        <button class="form-submit" onclick="submitCallback()">Надіслати заявку →</button>
-        <p class="form-notice">🔒 Адвокатська таємниця гарантована</p>
-      </div>
-      <div class="form-success" id="callback-success">
-        <div class="form-success-icon">✓</div>
-        <div class="form-success-title">Заявку отримано!</div>
-        <p class="form-success-text">Валентина зв'яжеться з вами найближчим часом.</p>
-      </div>
-    </div>
-
-    <!-- ФОРМА 2: Запис на прийом -->
-    <div class="form-box">
-      <div id="booking-content">
-        <div class="form-box-title">Записатися на прийом</div>
-        <p class="form-box-sub">Оберіть зручну дату та час</p>
-        <div class="form-group">
-          <label class="form-label">Ваше ім'я</label>
-          <input type="text" id="bk-name" class="form-control" placeholder="Ваше ім'я">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Телефон</label>
-          <input type="tel" id="bk-phone" class="form-control" placeholder="+38 (___) ___-__-__">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Дата</label>
-          <input type="date" id="bk-date" class="form-control" onchange="updateSlots()">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Час</label>
-          <div class="slots-grid" id="slots-grid">
-            <div style="grid-column:1/-1;font-size:0.8rem;color:var(--muted);padding:0.5rem 0;">Оберіть дату вище</div>
-          </div>
-        </div>
-        <button class="form-submit" onclick="submitBooking()">Записатися →</button>
-      </div>
-      <div class="form-success" id="booking-success">
-        <div class="form-success-icon">✓</div>
-        <div class="form-success-title">Запис підтверджено!</div>
-        <p class="form-success-text">Валентина зв'яжеться з вами для підтвердження часу.</p>
-      </div>
-    </div>
-  </div>
+<!-- CTA BANNER -->
+<section style="background:var(--navy); padding:4rem; text-align:center;">
+  <p style="font-size:0.72rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem;">Готові розпочати?</p>
+  <h2 style="font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:400; color:var(--white); line-height:1.2; margin-bottom:1rem;">Запишіться на консультацію</h2>
+  <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; max-width:480px; margin:0 auto 2rem; line-height:1.8;">Перша консультація безкоштовно. Зворотній дзвінок, онлайн-запис, чеклист документів — все на сторінці консультації.</p>
+  <a href="consultation.html" style="display:inline-flex; align-items:center; gap:0.5rem; background:var(--gold); color:var(--white); text-decoration:none; padding:1rem 2.4rem; font-size:0.85rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; border-radius:2px; transition:background 0.2s;">
+    Записатися на консультацію
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+  </a>
 </section>
 
 <!-- FOOTER -->
@@ -526,66 +445,6 @@ function closeMenu() {
   function upd() { on.textContent = Math.floor(Math.random() * 4) + 1; }
   upd(); setInterval(upd, 40000);
 })();
-
-/* ── Callback ── */
-async function submitCallback() {
-  const name    = document.getElementById('cb-name').value.trim();
-  const phone   = document.getElementById('cb-phone').value.trim();
-  const problem = document.getElementById('cb-problem').value.trim();
-  if (!name || !phone) { alert("Будь ласка, вкажіть ім'я та телефон"); return; }
-  const btn = document.querySelector('#callback-content .form-submit');
-  btn.textContent = 'Надсилаємо…'; btn.disabled = true;
-  const now = new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' });
-  await tgSend(`🔔 *Зворотній дзвінок*\n\n👤 *Ім'я:* ${name}\n📞 *Телефон:* ${phone}${problem ? '\n📝 *Ситуація:* ' + problem : ''}\n\n⏰ ${now}`);
-  document.getElementById('callback-content').style.display = 'none';
-  document.getElementById('callback-success').classList.add('show');
-}
-
-/* ── Booking slots ── */
-const BUSY = { 1: ['10:00','15:00'], 2: ['09:00','14:00'], 3: ['11:00','16:00'], 4: ['10:00'], 5: ['14:00','17:00'] };
-const ALL_SLOTS = ['09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00','18:00'];
-let selectedSlot = null;
-
-function updateSlots() {
-  const date = document.getElementById('bk-date').value;
-  if (!date) return;
-  const dow = new Date(date).getDay();
-  const busy = BUSY[dow] || [];
-  const grid = document.getElementById('slots-grid');
-  grid.innerHTML = '';
-  ALL_SLOTS.forEach(t => {
-    const isBusy = busy.includes(t);
-    const d = document.createElement('button');
-    d.type = 'button';
-    d.className = 'slot' + (isBusy ? ' busy' : '');
-    d.textContent = isBusy ? t + ' ✗' : t;
-    d.title = isBusy ? 'Зайнято' : '';
-    d.disabled = isBusy;
-    if (!isBusy) d.onclick = () => {
-      document.querySelectorAll('.slot').forEach(s => s.classList.remove('active'));
-      d.classList.add('active');
-      selectedSlot = t;
-    };
-    grid.appendChild(d);
-  });
-}
-
-async function submitBooking() {
-  const name  = document.getElementById('bk-name').value.trim();
-  const phone = document.getElementById('bk-phone').value.trim();
-  const date  = document.getElementById('bk-date').value;
-  if (!name || !phone) { alert("Будь ласка, вкажіть ім'я та телефон"); return; }
-  if (!date || !selectedSlot) { alert('Оберіть дату та час'); return; }
-  const btn = document.querySelector('#booking-content .form-submit');
-  btn.textContent = 'Надсилаємо…'; btn.disabled = true;
-  const now = new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' });
-  await tgSend(`📅 *Запис на прийом*\n\n👤 *Ім'я:* ${name}\n📞 *Телефон:* ${phone}\n📆 *Дата:* ${date} о ${selectedSlot}\n\n⏰ ${now}`);
-  document.getElementById('booking-content').style.display = 'none';
-  document.getElementById('booking-success').classList.add('show');
-}
-
-/* Min date */
-document.getElementById('bk-date').min = new Date().toISOString().split('T')[0];
 </script>
 </body>
 </html>
