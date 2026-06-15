@@ -4,95 +4,182 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Консультація — Валентина Грішина, Адвокат</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --navy:#1a2640; --gold:#b8953a; --gold-light:#d4aa54; --cream:#f8f6f1; --text:#1a2640; --muted:#5a6478; --border:rgba(26,38,64,0.12); --white:#ffffff; }
-body { font-family:'Inter',sans-serif; font-weight:300; color:var(--text); background:var(--white); line-height:1.7; }
-nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.25rem 4rem; background:rgba(255,255,255,0.97); border-bottom:0.5px solid var(--border); backdrop-filter:blur(8px); }
-.nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:600; color:var(--navy); text-decoration:none; }
+html { scroll-behavior: smooth; }
+body { font-family:'Inter',sans-serif; font-weight:300; color:var(--text); background:var(--white); line-height:1.7; overflow-x:hidden; }
+
+nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:1.1rem 4rem; background:rgba(255,255,255,0.97); border-bottom:0.5px solid var(--border); backdrop-filter:blur(8px); }
+.nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; color:var(--navy); text-decoration:none; }
 .nav-logo span { color:var(--gold); }
-.nav-links { display:flex; gap:2rem; list-style:none; }
-.nav-links a { text-decoration:none; color:var(--muted); font-size:0.82rem; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s; }
+.nav-links { display:flex; gap:2rem; list-style:none; align-items:center; }
+.nav-links a { text-decoration:none; color:var(--muted); font-size:0.8rem; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s; }
 .nav-links a:hover,.nav-links a.active { color:var(--navy); }
-.nav-cta { background:var(--navy); color:var(--white) !important; padding:0.55rem 1.4rem; border-radius:2px; }
+.nav-cta { background:var(--navy) !important; color:var(--white) !important; padding:0.5rem 1.2rem; border-radius:2px; }
+.nav-cta:hover { background:var(--gold) !important; }
+.burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; z-index:300; }
+.burger span { display:block; width:24px; height:1.5px; background:var(--navy); transition:all 0.3s; transform-origin:center; }
+.burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity:0; }
+.burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.mobile-menu { display:none; position:fixed; top:0; left:0; right:0; bottom:0; z-index:150; background:var(--navy); flex-direction:column; align-items:center; justify-content:center; gap:2rem; }
+.mobile-menu.open { display:flex; }
+.mobile-menu a { text-decoration:none; color:rgba(255,255,255,0.8); font-size:1.1rem; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.2s; }
+.mobile-menu a:hover,.mobile-menu .m-cta { color:var(--gold); }
+
+/* HERO */
 .page-hero { background:var(--navy); padding:8rem 4rem 4rem; }
-.page-hero-eyebrow { font-size:0.72rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem; }
-.page-hero-title { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:400; color:var(--white); line-height:1.2; margin-bottom:1rem; }
-.page-hero-sub { color:rgba(255,255,255,0.6); font-size:0.95rem; max-width:560px; line-height:1.8; }
-section { padding:4rem 4rem; }
-.section-eyebrow { font-size:0.72rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem; }
-.section-title { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:400; color:var(--navy); line-height:1.2; margin-bottom:1rem; }
-.divider { width:48px; height:1px; background:var(--gold); margin:1rem 0 1.5rem; }
+.hero-eyebrow { font-size:0.72rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem; }
+.hero-title { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:400; color:var(--white); line-height:1.2; margin-bottom:1rem; }
+.hero-sub { color:rgba(255,255,255,0.6); font-size:0.95rem; max-width:560px; line-height:1.8; }
+.online-badge { display:inline-flex; align-items:center; gap:8px; margin-top:1.2rem; font-size:0.82rem; color:rgba(255,255,255,0.65); }
+.online-dot { width:8px; height:8px; border-radius:50%; background:#4caf50; }
+.online-dot.off { background:#888; }
+
+/* SECTION */
+section { padding:4.5rem 4rem; }
+.section-eyebrow { font-size:0.7rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.7rem; }
+.section-title { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:400; color:var(--navy); line-height:1.2; margin-bottom:0.9rem; }
+.section-lead { color:var(--muted); max-width:560px; line-height:1.85; font-size:0.93rem; }
+.divider { width:44px; height:1px; background:var(--gold); margin:1rem 0 1.5rem; }
+
 /* QUIZ */
-.quiz-wrap { max-width:620px; }
+.quiz-wrap { max-width:600px; }
+.quiz-progress { display:flex; gap:6px; margin-bottom:1.5rem; }
+.quiz-dot { flex:1; height:3px; background:var(--border); border-radius:2px; transition:background 0.3s; }
+.quiz-dot.done { background:var(--gold); }
 .quiz-step { display:none; }
 .quiz-step.active { display:block; }
-.quiz-q { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--navy); margin-bottom:1.2rem; font-weight:500; }
-.quiz-options { display:flex; flex-direction:column; gap:0.6rem; }
-.quiz-opt { padding:0.9rem 1.2rem; border:0.5px solid var(--border); border-radius:3px; cursor:pointer; font-size:0.92rem; color:var(--text); background:var(--white); text-align:left; font-family:'Inter',sans-serif; font-weight:300; transition:all 0.2s; }
-.quiz-opt:hover { border-color:var(--gold); background:rgba(184,149,58,0.04); }
-.quiz-progress { display:flex; gap:6px; margin-bottom:1.5rem; }
-.quiz-dot { width:28px; height:3px; background:var(--border); border-radius:2px; transition:background 0.3s; }
-.quiz-dot.done { background:var(--gold); }
-.quiz-result { padding:2rem; background:var(--cream); border-radius:4px; border-left:3px solid var(--gold); }
-.quiz-result-title { font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--navy); margin-bottom:0.5rem; }
-.quiz-result-text { font-size:0.9rem; color:var(--muted); line-height:1.8; margin-bottom:1.2rem; }
-.quiz-restart { font-size:0.8rem; color:var(--gold); cursor:pointer; background:none; border:none; font-family:'Inter',sans-serif; text-decoration:underline; }
-/* BOOKING */
-.booking-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
-.form-label { display:block; font-size:0.72rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem; }
-.form-control { width:100%; padding:0.75rem 1rem; border:0.5px solid var(--border); border-radius:3px; font-family:'Inter',sans-serif; font-size:0.92rem; font-weight:300; color:var(--text); background:var(--white); transition:border-color 0.2s; outline:none; }
+.quiz-q { font-family:'Cormorant Garamond',serif; font-size:1.35rem; color:var(--navy); margin-bottom:1.1rem; font-weight:500; }
+.quiz-opts { display:flex; flex-direction:column; gap:0.55rem; }
+.quiz-opt { padding:0.85rem 1.1rem; border:0.5px solid var(--border); border-radius:3px; cursor:pointer; font-size:0.9rem; color:var(--text); background:var(--white); text-align:left; font-family:'Inter',sans-serif; font-weight:300; transition:all 0.18s; }
+.quiz-opt:hover { border-color:var(--gold); background:rgba(184,149,58,0.04); color:var(--navy); }
+.quiz-result { padding:1.8rem; background:var(--cream); border-radius:4px; border-left:3px solid var(--gold); }
+.quiz-result-title { font-family:'Cormorant Garamond',serif; font-size:1.45rem; color:var(--navy); margin-bottom:0.5rem; }
+.quiz-result-text { font-size:0.88rem; color:var(--muted); line-height:1.8; margin-bottom:1rem; }
+.quiz-cta { display:inline-flex; align-items:center; gap:0.4rem; background:var(--navy); color:var(--white); text-decoration:none; padding:0.7rem 1.4rem; font-size:0.78rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px; cursor:pointer; border:none; font-family:'Inter',sans-serif; transition:background 0.2s; }
+.quiz-cta:hover { background:var(--gold); }
+.quiz-restart { font-size:0.78rem; color:var(--muted); background:none; border:none; cursor:pointer; font-family:'Inter',sans-serif; text-decoration:underline; margin-left:1rem; }
+
+/* FORMS SECTION */
+#contact { background:var(--navy); }
+.contact-grid { display:grid; grid-template-columns:1fr 1.8fr; gap:4rem; align-items:start; margin-bottom:3rem; }
+.contact-info-title { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:400; color:var(--white); line-height:1.2; margin-bottom:0.8rem; }
+.contact-info-lead { color:rgba(255,255,255,0.55); font-size:0.88rem; line-height:1.8; margin-bottom:1.5rem; }
+.contact-item { display:flex; gap:0.85rem; align-items:flex-start; margin-bottom:1rem; }
+.contact-icon { width:34px; height:34px; background:rgba(255,255,255,0.07); border-radius:2px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
+.contact-text { font-size:0.87rem; color:rgba(255,255,255,0.7); line-height:1.6; padding-top:6px; }
+.forms-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+.form-box { background:var(--white); padding:2rem; border-radius:4px; }
+.form-box-title { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--navy); margin-bottom:0.25rem; }
+.form-box-sub { font-size:0.78rem; color:var(--muted); margin-bottom:1.3rem; }
+.form-group { margin-bottom:0.85rem; }
+.form-label { display:block; font-size:0.68rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:0.32rem; }
+.form-control { width:100%; padding:0.68rem 0.9rem; border:0.5px solid var(--border); border-radius:3px; font-family:'Inter',sans-serif; font-size:0.88rem; font-weight:300; color:var(--text); background:var(--white); outline:none; transition:border-color 0.2s; appearance:none; }
 .form-control:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(184,149,58,0.1); }
-.form-group { margin-bottom:1rem; }
-.slots-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.5rem; margin-top:0.4rem; }
-.slot { padding:0.55rem; border:0.5px solid var(--border); border-radius:3px; font-size:0.82rem; text-align:center; cursor:pointer; transition:all 0.2s; color:var(--muted); }
-.slot:hover,.slot.active { background:var(--navy); color:var(--white); border-color:var(--navy); }
-.slot.busy { background:var(--cream); color:rgba(90,100,120,0.4); cursor:not-allowed; text-decoration:line-through; }
-.btn-primary { width:100%; padding:1rem; background:var(--navy); color:var(--white); border:none; border-radius:3px; font-family:'Inter',sans-serif; font-size:0.85rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:background 0.2s; margin-top:0.5rem; }
-.btn-primary:hover { background:var(--gold); }
+.form-control::placeholder { color:rgba(90,100,120,0.38); }
+textarea.form-control { resize:vertical; min-height:75px; }
+.form-submit { width:100%; padding:0.85rem; background:var(--navy); color:var(--white); border:none; border-radius:3px; font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:background 0.2s; margin-top:0.3rem; }
+.form-submit:hover { background:var(--gold); }
+.form-submit:disabled { opacity:0.55; cursor:not-allowed; }
+.form-notice { font-size:0.7rem; color:var(--muted); text-align:center; margin-top:0.6rem; }
+.form-success { display:none; text-align:center; padding:1.5rem 1rem; }
+.form-success.show { display:block; }
+.form-success-icon { width:44px; height:44px; background:rgba(42,122,75,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; margin:0 auto 0.7rem; }
+.form-success-title { font-family:'Cormorant Garamond',serif; font-size:1.25rem; color:var(--navy); margin-bottom:0.35rem; }
+.form-success-text { font-size:0.83rem; color:var(--muted); }
+
+/* SLOTS */
+.slots-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.38rem; margin-top:0.32rem; }
+.slot { padding:0.42rem; border:0.5px solid var(--border); border-radius:3px; font-size:0.76rem; text-align:center; cursor:pointer; transition:all 0.18s; color:var(--muted); background:var(--white); font-family:'Inter',sans-serif; }
+.slot:hover:not(.busy) { border-color:var(--gold); color:var(--navy); }
+.slot.active { background:var(--navy); color:var(--white); border-color:var(--navy); }
+.slot.busy { background:#fef2f2; color:#e57373; border-color:#fecaca; cursor:not-allowed; text-decoration:line-through; font-size:0.7rem; }
+
 /* CHECKLIST */
-.checklist-tabs { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
-.tab-btn { padding:0.45rem 1.1rem; border:0.5px solid var(--border); border-radius:2px; background:var(--white); color:var(--muted); font-size:0.78rem; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.2s; }
+.checklist-tabs { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.4rem; }
+.tab-btn { padding:0.42rem 1rem; border:0.5px solid var(--border); border-radius:2px; background:var(--white); color:var(--muted); font-size:0.74rem; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.2s; }
 .tab-btn:hover,.tab-btn.active { background:var(--navy); color:var(--white); border-color:var(--navy); }
-.checklist { display:none; }
+.checklist { display:none; max-width:560px; }
 .checklist.active { display:block; }
-.checklist ul { list-style:none; display:flex; flex-direction:column; gap:0.6rem; }
-.checklist li { display:flex; align-items:flex-start; gap:0.8rem; font-size:0.9rem; color:var(--muted); padding:0.7rem 1rem; background:var(--cream); border-radius:3px; }
-.checklist li::before { content:'□'; color:var(--gold); font-size:1rem; flex-shrink:0; line-height:1.4; }
+.checklist ul { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+.checklist li { display:flex; align-items:flex-start; gap:0.75rem; font-size:0.88rem; color:var(--muted); padding:0.65rem 1rem; background:var(--cream); border-radius:3px; line-height:1.5; }
+.checklist li::before { content:'□'; color:var(--gold); font-size:1rem; flex-shrink:0; line-height:1.35; }
+
 /* CALC */
-.calc-wrap { background:var(--cream); padding:2rem; border-radius:4px; max-width:560px; }
-.calc-row { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+.calc-wrap { background:var(--cream); padding:2rem; border-radius:4px; max-width:520px; }
+.calc-row { display:flex; align-items:center; gap:1rem; margin-bottom:0.9rem; }
 .calc-label { font-size:0.82rem; color:var(--muted); flex:1; }
-.calc-select { padding:0.55rem 0.8rem; border:0.5px solid var(--border); border-radius:3px; font-family:'Inter',sans-serif; font-size:0.88rem; background:var(--white); color:var(--text); outline:none; min-width:160px; }
-.calc-result { margin-top:1.5rem; padding:1.2rem 1.5rem; background:var(--navy); border-radius:3px; display:flex; justify-content:space-between; align-items:center; }
-.calc-result-label { font-size:0.8rem; color:rgba(255,255,255,0.6); }
-.calc-result-price { font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--gold-light); font-weight:500; }
-.online-badge { display:inline-flex; align-items:center; gap:6px; font-size:0.8rem; color:rgba(255,255,255,0.7); margin-top:0.5rem; }
-.online-dot { width:8px; height:8px; border-radius:50%; background:#4caf50; }
-footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.08); padding:2rem 4rem; display:flex; align-items:center; justify-content:space-between; }
-.footer-copy { font-size:0.8rem; color:rgba(255,255,255,0.35); }
-@media(max-width:900px) { nav{padding:1rem 1.5rem;} .nav-links{display:none;} .page-hero{padding:6rem 1.5rem 3rem;} section{padding:3rem 1.5rem;} .booking-grid{grid-template-columns:1fr;gap:2rem;} footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;} }
+.calc-select { padding:0.55rem 0.8rem; border:0.5px solid var(--border); border-radius:3px; font-family:'Inter',sans-serif; font-size:0.88rem; background:var(--white); color:var(--text); outline:none; min-width:155px; appearance:none; }
+.calc-result { margin-top:1.3rem; padding:1.1rem 1.4rem; background:var(--navy); border-radius:3px; display:flex; justify-content:space-between; align-items:center; }
+.calc-result-label { font-size:0.75rem; color:rgba(255,255,255,0.55); margin-bottom:0.2rem; }
+.calc-price { font-family:'Cormorant Garamond',serif; font-size:1.7rem; color:var(--gold-light); font-weight:500; }
+.calc-note { font-size:0.72rem; color:rgba(255,255,255,0.4); margin-top:0.2rem; }
+
+/* MAP */
+#map-section { padding:0; }
+.map-grid { display:grid; grid-template-columns:1fr 2fr; }
+.map-info { background:var(--navy); padding:3rem 2.5rem; display:flex; flex-direction:column; justify-content:center; }
+.map-eyebrow { font-size:0.7rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:0.7rem; }
+.map-title { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:400; color:var(--white); line-height:1.25; margin-bottom:1rem; }
+.map-divider { width:44px; height:1px; background:var(--gold); margin-bottom:1.4rem; }
+.map-item { display:flex; gap:0.8rem; align-items:flex-start; margin-bottom:0.9rem; }
+.map-icon { width:34px; height:34px; background:rgba(255,255,255,0.07); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:0.9rem; }
+.map-text { font-size:0.87rem; color:rgba(255,255,255,0.7); line-height:1.6; padding-top:5px; }
+.map-btn { margin-top:1.8rem; display:inline-flex; align-items:center; gap:0.4rem; background:var(--gold); color:var(--white); text-decoration:none; padding:0.7rem 1.3rem; font-size:0.78rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px; transition:background 0.2s; align-self:flex-start; }
+.map-btn:hover { background:var(--gold-light); }
+.map-iframe { width:100%; min-height:380px; border:0; display:block; }
+
+footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.07); padding:1.8rem 4rem; display:flex; align-items:center; justify-content:space-between; }
+.footer-copy { font-size:0.75rem; color:rgba(255,255,255,0.3); }
+
+@media(max-width:768px) {
+  nav { padding:1rem 1.2rem; } .nav-links { display:none; } .burger { display:flex; }
+  .page-hero { padding:6rem 1.2rem 3rem; }
+  .hero-title { font-size:2rem; }
+  section { padding:3rem 1.2rem; }
+  .contact-grid { grid-template-columns:1fr; gap:2rem; }
+  .forms-grid { grid-template-columns:1fr; }
+  .map-grid { grid-template-columns:1fr; }
+  .map-info { padding:2rem 1.2rem; }
+  .map-iframe { min-height:240px; }
+  .slots-grid { grid-template-columns:repeat(4,1fr); }
+  footer { padding:1.4rem 1.2rem; flex-direction:column; gap:0.4rem; text-align:center; }
+}
 </style>
 </head>
 <body>
+
 <nav>
   <a href="index.html" class="nav-logo">Грішина<span> &amp; Партнери</span></a>
   <ul class="nav-links">
     <li><a href="index.html">Головна</a></li>
     <li><a href="about.html">Про мене</a></li>
     <li><a href="cases.html">Портфоліо</a></li>
-    <li><a href="blog.html">Корисне</a></li>
     <li><a href="reviews.html">Відгуки</a></li>
+    <li><a href="blog.html">Корисне</a></li>
     <li><a href="consultation.html" class="nav-cta active">Консультація</a></li>
   </ul>
+  <button class="burger" id="burger"><span></span><span></span><span></span></button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Головна</a>
+  <a href="about.html" onclick="closeMenu()">Про мене</a>
+  <a href="cases.html" onclick="closeMenu()">Портфоліо</a>
+  <a href="reviews.html" onclick="closeMenu()">Відгуки</a>
+  <a href="blog.html" onclick="closeMenu()">Корисне</a>
+  <a href="consultation.html" class="m-cta" onclick="closeMenu()">Консультація →</a>
+</div>
 
+<!-- HERO -->
 <div class="page-hero">
-  <p class="page-hero-eyebrow">Консультація</p>
-  <h1 class="page-hero-title">Запишіться на прийом</h1>
-  <p class="page-hero-sub">Оберіть зручний час, пройдіть короткий тест і дізнайтесь які документи взяти. Перша консультація — безкоштовно.</p>
-  <div class="online-badge" id="online-badge" style="margin-top:1.2rem;">
+  <p class="hero-eyebrow">Консультація</p>
+  <h1 class="hero-title">Запишіться на прийом<br>або залиште заявку</h1>
+  <p class="hero-sub">Перша консультація безкоштовно. Зворотній дзвінок, онлайн-запис, чеклист документів і калькулятор вартості — все тут.</p>
+  <div class="online-badge">
     <div class="online-dot" id="online-dot"></div>
     <span id="online-text">Перевіряємо графік...</span>
   </div>
@@ -104,7 +191,7 @@ footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.08); 
   <h2 class="section-title">Чи потрібен вам адвокат?</h2>
   <div class="divider"></div>
   <div class="quiz-wrap">
-    <div class="quiz-progress" id="quiz-progress">
+    <div class="quiz-progress">
       <div class="quiz-dot done" id="d0"></div>
       <div class="quiz-dot" id="d1"></div>
       <div class="quiz-dot" id="d2"></div>
@@ -113,7 +200,7 @@ footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.08); 
     </div>
     <div class="quiz-step active" id="q0">
       <div class="quiz-q">Яка у вас ситуація?</div>
-      <div class="quiz-options">
+      <div class="quiz-opts">
         <button class="quiz-opt" onclick="nextQ(1,3)">Мене затримали або викликали на допит</button>
         <button class="quiz-opt" onclick="nextQ(1,2)">Конфлікт щодо майна або грошей</button>
         <button class="quiz-opt" onclick="nextQ(1,2)">Сімейний спір — розлучення, діти, аліменти</button>
@@ -121,24 +208,24 @@ footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.08); 
       </div>
     </div>
     <div class="quiz-step" id="q1">
-      <div class="quiz-q">Чи вже є офіційні документи у справі?</div>
-      <div class="quiz-options">
-        <button class="quiz-opt" onclick="nextQ(2,2)">Так, є повістка, постанова або позов</button>
-        <button class="quiz-opt" onclick="nextQ(2,1)">Ні, поки що лише усні розмови</button>
+      <div class="quiz-q">Чи є вже офіційні документи у справі?</div>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="nextQ(2,2)">Так — є повістка, постанова або позов</button>
+        <button class="quiz-opt" onclick="nextQ(2,1)">Ні, поки лише усні розмови</button>
       </div>
     </div>
     <div class="quiz-step" id="q2">
-      <div class="quiz-q">Є інша сторона з юристом або адвокатом?</div>
-      <div class="quiz-options">
+      <div class="quiz-q">Інша сторона має юриста або адвоката?</div>
+      <div class="quiz-opts">
         <button class="quiz-opt" onclick="nextQ(3,2)">Так</button>
         <button class="quiz-opt" onclick="nextQ(3,1)">Ні або не знаю</button>
       </div>
     </div>
     <div class="quiz-step" id="q3">
       <div class="quiz-q">Як давно виникла ситуація?</div>
-      <div class="quiz-options">
-        <button class="quiz-opt" onclick="nextQ(4,2)">Нещодавно, менше місяця</button>
-        <button class="quiz-opt" onclick="nextQ(4,1)">Давно, кілька місяців або більше</button>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="nextQ(4,2)">Нещодавно — менше місяця</button>
+        <button class="quiz-opt" onclick="nextQ(4,1)">Давно — кілька місяців або більше</button>
       </div>
     </div>
     <div class="quiz-step" id="q4">
@@ -147,50 +234,61 @@ footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.08); 
   </div>
 </section>
 
-<!-- BOOKING -->
-<section>
-  <div class="booking-grid">
+<!-- CONTACT FORMS -->
+<section id="contact">
+  <div class="contact-grid">
     <div>
-      <p class="section-eyebrow">Запис</p>
-      <h2 class="section-title">Оберіть час</h2>
-      <div class="divider"></div>
-      <div class="form-group">
-        <label class="form-label">Дата</label>
-        <input type="date" id="book-date" class="form-control" onchange="updateSlots()">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Доступний час</label>
-        <div class="slots-grid" id="slots-grid">
-          <div style="font-size:0.85rem;color:var(--muted);grid-column:1/-1;">Оберіть дату вище</div>
+      <p style="font-size:0.7rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.7rem;">Контакти</p>
+      <div class="contact-info-title">Зв'яжіться<br>з нами</div>
+      <p class="contact-info-lead">Залиште заявку на зворотній дзвінок або запишіться на зручний час. Конфіденційність гарантована адвокатською таємницею.</p>
+      <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-text">+38 (048) 771-49-68<br>+38 (067) 865-78-24</div></div>
+      <div class="contact-item"><div class="contact-icon">✉️</div><div class="contact-text">odessaadvokat@gmail.com</div></div>
+      <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text">Одеса, вул. Фонтанська дорога, 16/8, кв. 158</div></div>
+      <div class="contact-item"><div class="contact-icon">🕐</div><div class="contact-text">Пн–Пт: 9:00–19:00<br>Сб: 9:00–15:00 · Нд: 10:00–16:00</div></div>
+    </div>
+    <div class="forms-grid">
+      <!-- Зворотній дзвінок -->
+      <div class="form-box">
+        <div id="cb-content">
+          <div class="form-box-title">Зворотній дзвінок</div>
+          <p class="form-box-sub">Передзвонимо протягом 2 годин</p>
+          <div class="form-group"><label class="form-label">Ваше ім'я</label><input type="text" id="cb-name" class="form-control" placeholder="Наприклад, Олена"></div>
+          <div class="form-group"><label class="form-label">Телефон</label><input type="tel" id="cb-phone" class="form-control" placeholder="+38 (___) ___-__-__"></div>
+          <div class="form-group"><label class="form-label">Ситуація (коротко)</label><textarea id="cb-problem" class="form-control" rows="3" placeholder="Опишіть ваше питання..."></textarea></div>
+          <button class="form-submit" onclick="submitCallback()">Надіслати заявку →</button>
+          <p class="form-notice">🔒 Адвокатська таємниця гарантована</p>
+        </div>
+        <div class="form-success" id="cb-success">
+          <div class="form-success-icon">✓</div>
+          <div class="form-success-title">Заявку отримано!</div>
+          <p class="form-success-text">Валентина зв'яжеться з вами найближчим часом.</p>
         </div>
       </div>
-    </div>
-    <div>
-      <p class="section-eyebrow">&nbsp;</p>
-      <h2 class="section-title">Ваші дані</h2>
-      <div class="divider"></div>
-      <div class="form-group">
-        <label class="form-label">Ім'я</label>
-        <input type="text" id="book-name" class="form-control" placeholder="Ваше ім'я">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Телефон</label>
-        <input type="tel" id="book-phone" class="form-control" placeholder="+38 (0__) ___-__-__">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Тип питання</label>
-        <select id="book-type" class="form-control">
-          <option>Кримінальне право</option>
-          <option>Цивільні спори</option>
-          <option>Сімейне право</option>
-          <option>Господарські справи</option>
-          <option>Адміністративне право</option>
-          <option>Спадщина</option>
-        </select>
-      </div>
-      <button class="btn-primary" onclick="bookAppointment()">Записатись на прийом →</button>
-      <div id="book-success" style="display:none;margin-top:1rem;padding:1rem;background:rgba(42,122,75,0.08);border-radius:3px;font-size:0.88rem;color:#2a7a4b;">
-        ✓ Запис підтверджено! Валентина зв'яжеться з вами для підтвердження.
+      <!-- Запис на прийом -->
+      <div class="form-box">
+        <div id="bk-content">
+          <div class="form-box-title">Записатися на прийом</div>
+          <p class="form-box-sub">Оберіть зручну дату та час</p>
+          <div class="form-group"><label class="form-label">Ваше ім'я</label><input type="text" id="bk-name" class="form-control" placeholder="Ваше ім'я"></div>
+          <div class="form-group"><label class="form-label">Телефон</label><input type="tel" id="bk-phone" class="form-control" placeholder="+38 (___) ___-__-__"></div>
+          <div class="form-group"><label class="form-label">Тип питання</label>
+            <select id="bk-type" class="form-control">
+              <option>Кримінальне право</option><option>Цивільні спори</option>
+              <option>Сімейне право</option><option>Господарські справи</option>
+              <option>Спадщина</option><option>Адміністративне право</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Дата</label><input type="date" id="bk-date" class="form-control" onchange="updateSlots()"></div>
+          <div class="form-group"><label class="form-label">Час</label>
+            <div class="slots-grid" id="slots-grid"><div style="grid-column:1/-1;font-size:0.78rem;color:var(--muted);padding:0.4rem 0;">Оберіть дату вище</div></div>
+          </div>
+          <button class="form-submit" onclick="submitBooking()">Записатися →</button>
+        </div>
+        <div class="form-success" id="bk-success">
+          <div class="form-success-icon">✓</div>
+          <div class="form-success-title">Запис підтверджено!</div>
+          <p class="form-success-text">Валентина зв'яжеться з вами для підтвердження.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -203,46 +301,38 @@ footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.08); 
   <div class="divider"></div>
   <div class="checklist-tabs">
     <button class="tab-btn active" onclick="showTab('criminal',this)">Кримінальне</button>
-    <button class="tab-btn" onclick="showTab('civil',this)">Цивільне / майно</button>
+    <button class="tab-btn" onclick="showTab('civil',this)">Майно / Цивільне</button>
     <button class="tab-btn" onclick="showTab('family',this)">Сімейне</button>
     <button class="tab-btn" onclick="showTab('business',this)">Бізнес</button>
   </div>
-  <div class="checklist active" id="tab-criminal">
-    <ul>
-      <li>Паспорт або інший документ що посвідчує особу</li>
-      <li>Копія повістки або постанови про виклик (якщо є)</li>
-      <li>Будь-які документи пов'язані зі справою</li>
-      <li>Список свідків на вашу користь із контактами</li>
-      <li>Детальний письмовий опис хронології подій</li>
-    </ul>
-  </div>
-  <div class="checklist" id="tab-civil">
-    <ul>
-      <li>Паспорт та ідентифікаційний код</li>
-      <li>Документи на майно (договір, свідоцтво, витяг)</li>
-      <li>Квитанції та докази оплати</li>
-      <li>Листування з іншою стороною</li>
-      <li>Копія позовної заяви або претензії (якщо є)</li>
-    </ul>
-  </div>
-  <div class="checklist" id="tab-family">
-    <ul>
-      <li>Паспорт, свідоцтво про шлюб або розлучення</li>
-      <li>Свідоцтво про народження дитини</li>
-      <li>Документи на спільне майно</li>
-      <li>Довідки про доходи (обох сторін якщо є)</li>
-      <li>Характеристика з місця роботи або проживання</li>
-    </ul>
-  </div>
-  <div class="checklist" id="tab-business">
-    <ul>
-      <li>Виписка з ЄДР або статут підприємства</li>
-      <li>Договори з контрагентами у справі</li>
-      <li>Первинні бухгалтерські документи</li>
-      <li>Листування і переписка з партнерами</li>
-      <li>Рішення судів або постанови ДПС (якщо є)</li>
-    </ul>
-  </div>
+  <div class="checklist active" id="tab-criminal"><ul>
+    <li>Паспорт або документ що посвідчує особу</li>
+    <li>Копія повістки або постанови про виклик (якщо є)</li>
+    <li>Всі документи пов'язані зі справою</li>
+    <li>Список свідків на вашу користь із контактами</li>
+    <li>Детальний письмовий опис хронології подій</li>
+  </ul></div>
+  <div class="checklist" id="tab-civil"><ul>
+    <li>Паспорт та ідентифікаційний код</li>
+    <li>Документи на майно (договір, свідоцтво, витяг)</li>
+    <li>Квитанції та докази оплати</li>
+    <li>Листування з іншою стороною</li>
+    <li>Копія позовної заяви або претензії (якщо є)</li>
+  </ul></div>
+  <div class="checklist" id="tab-family"><ul>
+    <li>Паспорт, свідоцтво про шлюб або розлучення</li>
+    <li>Свідоцтво про народження дитини</li>
+    <li>Документи на спільне майно</li>
+    <li>Довідки про доходи (обох сторін якщо є)</li>
+    <li>Характеристика з місця роботи або проживання</li>
+  </ul></div>
+  <div class="checklist" id="tab-business"><ul>
+    <li>Виписка з ЄДР або статут підприємства</li>
+    <li>Договори з контрагентами у справі</li>
+    <li>Первинні бухгалтерські документи</li>
+    <li>Листування і переписка з партнерами</li>
+    <li>Рішення судів або постанови ДПС (якщо є)</li>
+  </ul></div>
 </section>
 
 <!-- CALCULATOR -->
@@ -250,16 +340,17 @@ footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.08); 
   <p class="section-eyebrow">Калькулятор</p>
   <h2 class="section-title">Орієнтовна вартість послуг</h2>
   <div class="divider"></div>
-  <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;max-width:500px;">Точна вартість визначається після консультації. Цей калькулятор дає орієнтовне уявлення.</p>
+  <p class="section-lead" style="margin-bottom:1.5rem;">Точна вартість визначається після консультації. Калькулятор дає орієнтовне уявлення.</p>
   <div class="calc-wrap">
     <div class="calc-row">
       <label class="calc-label">Тип справи</label>
       <select class="calc-select" id="calc-type" onchange="calcPrice()">
-        <option value="1">Консультація</option>
-        <option value="2">Цивільна справа</option>
-        <option value="3">Кримінальне провадження</option>
-        <option value="4">Господарський спір</option>
-        <option value="5">Сімейна справа</option>
+        <option value="500">Консультація</option>
+        <option value="3000">Цивільна справа</option>
+        <option value="8000">Кримінальне провадження</option>
+        <option value="5000">Господарський спір</option>
+        <option value="2500">Сімейна справа</option>
+        <option value="2000">Спадщина</option>
       </select>
     </div>
     <div class="calc-row">
@@ -273,10 +364,27 @@ footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.08); 
     <div class="calc-result">
       <div>
         <div class="calc-result-label">Орієнтовно від</div>
-        <div class="calc-result-price" id="calc-out">500 грн</div>
+        <div class="calc-price" id="calc-out">500 грн</div>
+        <div class="calc-note">Точна сума — після консультації</div>
       </div>
-      <a href="#booking" style="font-size:0.78rem;color:var(--gold-light);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;">Записатись →</a>
+      <a href="#contact" style="font-size:0.75rem;color:var(--gold-light);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;">Записатись →</a>
     </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="map-section" style="padding:0;">
+  <div class="map-grid">
+    <div class="map-info">
+      <p class="map-eyebrow">Як нас знайти</p>
+      <h2 class="map-title">Адреса офісу</h2>
+      <div class="map-divider"></div>
+      <div class="map-item"><div class="map-icon">📍</div><div class="map-text">м. Одеса, р-н Київський<br>вул. Фонтанська дорога, 16/8, кв. 158</div></div>
+      <div class="map-item"><div class="map-icon">🚌</div><div class="map-text">Зупинка «Фонтанська дорога»<br>Маршрути: 185, 195, 205</div></div>
+      <div class="map-item"><div class="map-icon">🚗</div><div class="map-text">Є парковка біля будинку</div></div>
+      <a href="https://maps.google.com/?q=Одеса,+вул.+Фонтанська+дорога,+16/8" target="_blank" class="map-btn">Прокласти маршрут →</a>
+    </div>
+    <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2748.5!2d30.7233!3d46.4285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c633b6eaf7c6e3%3A0x1!2z0KTQvtC90YLQsNC90YHRjNC60LAg0LTQvtGA0L7Qs9CwLCAxNi84!5e0!3m2!1suk!2sua!4v1700000000000" allowfullscreen loading="lazy"></iframe>
   </div>
 </section>
 
@@ -286,86 +394,128 @@ footer { background:var(--navy); border-top:0.5px solid rgba(255,255,255,0.08); 
 </footer>
 
 <script>
-const TG_TOKEN = "8655022362:AAEQvj64eLKQit_-8JZs952gEdDPRLAXeIU";
-const TG_CHAT  = "773747636";
+const TG_TOKEN = '8655022362:AAEQvj64eLKQit_-8JZs952gEdDPRLAXeIU';
+const TG_CHAT  = '773747636';
 
 async function tgSend(text) {
-  try { await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT,text,parse_mode:'Markdown'})}); } catch(_){}
+  try {
+    const r = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({chat_id:TG_CHAT, text, parse_mode:'Markdown'})
+    });
+    const d = await r.json();
+    if (!d.ok) console.error('TG error:', d);
+  } catch(e) { console.error('TG error:', e); }
 }
 
-// ONLINE STATUS
-function checkOnline() {
-  const now = new Date();
-  const h = now.getHours(), d = now.getDay();
-  let online = false;
-  if (d>=1&&d<=5&&h>=9&&h<19) online=true;
-  if (d===6&&h>=9&&h<15) online=true;
-  if (d===0&&h>=10&&h<16) online=true;
-  document.getElementById('online-dot').style.background = online ? '#4caf50' : '#aaa';
-  document.getElementById('online-text').textContent = online ? 'Зараз приймає — можна записатись' : 'Зараз не в офісі — залиште заявку';
-}
-checkOnline();
+/* Burger */
+const burger = document.getElementById('burger');
+const mmenu  = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  const o = mmenu.classList.toggle('open');
+  burger.classList.toggle('open', o);
+  document.body.style.overflow = o ? 'hidden' : '';
+});
+function closeMenu() { mmenu.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = ''; }
 
-// QUIZ
+/* Online status */
+(function() {
+  const h = new Date().getHours(), d = new Date().getDay();
+  const on = (d>=1&&d<=5&&h>=9&&h<19)||(d===6&&h>=9&&h<15)||(d===0&&h>=10&&h<16);
+  document.getElementById('online-dot').className = 'online-dot' + (on?'':' off');
+  document.getElementById('online-text').textContent = on ? 'Зараз приймає — можна записатись' : 'Зараз не в офісі — залиште заявку';
+})();
+
+/* Quiz */
 let score = 0;
 const results = [
-  { title:'Консультація буде корисною', text:'Ваша ситуація поки що не критична, але рання консультація допоможе уникнути помилок і підготуватись.' },
-  { title:'Радимо проконсультуватись', text:'Є ознаки що ситуація може ускладнитись. Юридична порада допоможе захистити ваші інтереси вчасно.' },
-  { title:'Адвокат потрібен терміново', text:'Ваша ситуація потребує негайної юридичної допомоги. Зволікання може суттєво погіршити позицію у справі.' },
-  { title:'Негайно зв\'яжіться з адвокатом', text:'Критична ситуація. Будь-які дії без адвоката можуть мати серйозні наслідки. Телефонуйте прямо зараз.' }
+  {title:'Консультація буде корисною', text:'Ваша ситуація поки не критична, але рання консультація допоможе уникнути помилок.'},
+  {title:'Радимо проконсультуватись', text:'Є ознаки що ситуація може ускладнитись. Юридична порада захистить ваші інтереси вчасно.'},
+  {title:'Адвокат потрібен терміново', text:'Ваша ситуація потребує негайної юридичної допомоги. Зволікання може суттєво погіршити позицію.'},
+  {title:'Негайно зв\'яжіться з адвокатом', text:'Критична ситуація. Будь-які дії без адвоката можуть мати серйозні наслідки. Телефонуйте зараз.'}
 ];
 function nextQ(step, pts) {
   score += pts;
-  document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
   if (step < 4) {
     document.getElementById('q'+step).classList.add('active');
-    for(let i=0;i<=step;i++) document.getElementById('d'+i).classList.add('done');
+    for (let i=0; i<=step; i++) document.getElementById('d'+i).classList.add('done');
   } else {
     document.getElementById('q4').classList.add('active');
-    for(let i=0;i<5;i++) document.getElementById('d'+i).classList.add('done');
+    document.querySelectorAll('.quiz-dot').forEach(d => d.classList.add('done'));
     const lvl = score<=3?0:score<=5?1:score<=7?2:3;
     const r = results[lvl];
-    document.getElementById('quiz-result').innerHTML = `<div class="quiz-result-title">${r.title}</div><div class="quiz-result-text">${r.text}</div><a href="#" class="quiz-restart" onclick="restartQuiz()">Пройти тест знову</a>`;
+    document.getElementById('quiz-result').innerHTML = `
+      <div class="quiz-result-title">${r.title}</div>
+      <div class="quiz-result-text">${r.text}</div>
+      <a href="#contact" class="quiz-cta">Записатись зараз →</a>
+      <button class="quiz-restart" onclick="restartQuiz()">Пройти знову</button>`;
   }
 }
 function restartQuiz() {
-  score=0;
-  document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));
+  score = 0;
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
   document.getElementById('q0').classList.add('active');
-  document.querySelectorAll('.quiz-dot').forEach((d,i)=>{ d.classList.remove('done'); if(i===0) d.classList.add('done'); });
+  document.querySelectorAll('.quiz-dot').forEach((d,i) => { d.classList.remove('done'); if(i===0) d.classList.add('done'); });
 }
 
-// BOOKING
-const allSlots = ['09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00','18:00'];
-const busySlots = ['10:00','14:00'];
+/* Callback */
+async function submitCallback() {
+  const name = document.getElementById('cb-name').value.trim();
+  const phone = document.getElementById('cb-phone').value.trim();
+  const problem = document.getElementById('cb-problem').value.trim();
+  if (!name || !phone) { alert("Вкажіть ім'я та телефон"); return; }
+  const btn = document.querySelector('#cb-content .form-submit');
+  btn.textContent = 'Надсилаємо…'; btn.disabled = true;
+  const now = new Date().toLocaleString('uk-UA', {timeZone:'Europe/Kyiv'});
+  await tgSend(`🔔 *Зворотній дзвінок*\n\n👤 *Ім'я:* ${name}\n📞 *Телефон:* ${phone}${problem?'\n📝 *Ситуація:* '+problem:''}\n\n⏰ ${now}`);
+  document.getElementById('cb-content').style.display = 'none';
+  document.getElementById('cb-success').classList.add('show');
+}
+
+/* Booking */
+const BUSY = {1:['10:00','15:00'],2:['09:00','14:00'],3:['11:00','16:00'],4:['10:00'],5:['14:00','17:00']};
+const ALL_SLOTS = ['09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00','18:00'];
 let selectedSlot = null;
+
 function updateSlots() {
+  const date = document.getElementById('bk-date').value;
+  if (!date) return;
+  const dow = new Date(date).getDay();
+  const busy = BUSY[dow] || [];
   const grid = document.getElementById('slots-grid');
   grid.innerHTML = '';
-  allSlots.forEach(t => {
-    const d = document.createElement('div');
-    d.className = 'slot' + (busySlots.includes(t)?' busy':'');
-    d.textContent = t;
-    if (!busySlots.includes(t)) d.onclick = () => {
+  ALL_SLOTS.forEach(t => {
+    const isBusy = busy.includes(t);
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'slot' + (isBusy?' busy':'');
+    b.textContent = isBusy ? t+' ✗' : t;
+    b.disabled = isBusy;
+    if (!isBusy) b.onclick = () => {
       document.querySelectorAll('.slot').forEach(s=>s.classList.remove('active'));
-      d.classList.add('active');
-      selectedSlot = t;
+      b.classList.add('active'); selectedSlot = t;
     };
-    grid.appendChild(d);
+    grid.appendChild(b);
   });
 }
-async function bookAppointment() {
-  const name = document.getElementById('book-name').value.trim();
-  const phone = document.getElementById('book-phone').value.trim();
-  const date = document.getElementById('book-date').value;
-  const type = document.getElementById('book-type').value;
-  if (!name||!phone||!date||!selectedSlot) { alert('Заповніть всі поля та оберіть час'); return; }
-  const msg = `📅 *Запис на консультацію*\n\n👤 *Ім'я:* ${name}\n📞 *Телефон:* ${phone}\n📆 *Дата:* ${date} о ${selectedSlot}\n⚖️ *Тип:* ${type}`;
-  await tgSend(msg);
-  document.getElementById('book-success').style.display='block';
+
+async function submitBooking() {
+  const name  = document.getElementById('bk-name').value.trim();
+  const phone = document.getElementById('bk-phone').value.trim();
+  const date  = document.getElementById('bk-date').value;
+  const type  = document.getElementById('bk-type').value;
+  if (!name || !phone) { alert("Вкажіть ім'я та телефон"); return; }
+  if (!date || !selectedSlot) { alert('Оберіть дату та час'); return; }
+  const btn = document.querySelector('#bk-content .form-submit');
+  btn.textContent = 'Надсилаємо…'; btn.disabled = true;
+  const now = new Date().toLocaleString('uk-UA', {timeZone:'Europe/Kyiv'});
+  await tgSend(`📅 *Запис на прийом*\n\n👤 *Ім'я:* ${name}\n📞 *Телефон:* ${phone}\n⚖️ *Тип:* ${type}\n📆 *Дата:* ${date} о ${selectedSlot}\n\n⏰ ${now}`);
+  document.getElementById('bk-content').style.display = 'none';
+  document.getElementById('bk-success').classList.add('show');
 }
 
-// CHECKLIST TABS
+/* Checklist tabs */
 function showTab(id, btn) {
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.checklist').forEach(c=>c.classList.remove('active'));
@@ -373,17 +523,15 @@ function showTab(id, btn) {
   document.getElementById('tab-'+id).classList.add('active');
 }
 
-// CALCULATOR
-const prices = {1:500,2:3000,3:8000,4:5000,5:2500};
+/* Calculator */
 function calcPrice() {
-  const type = +document.getElementById('calc-type').value;
-  const complex = +document.getElementById('calc-complex').value;
-  const price = Math.round(prices[type] * complex / 100) * 100;
+  const base = +document.getElementById('calc-type').value;
+  const mult = +document.getElementById('calc-complex').value;
+  const price = Math.round(base * mult / 100) * 100;
   document.getElementById('calc-out').textContent = price.toLocaleString('uk-UA') + ' грн';
 }
 
-// Set min date
-document.getElementById('book-date').min = new Date().toISOString().split('T')[0];
+document.getElementById('bk-date').min = new Date().toISOString().split('T')[0];
 </script>
 </body>
 </html>
