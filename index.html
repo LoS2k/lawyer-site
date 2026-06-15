@@ -937,6 +937,8 @@ async function submitReview(e) {
   e.target.reset();
   document.getElementById('review-success').style.display = 'block';
 }
+
+async function submitForm(e) {
   e.preventDefault();
   const name    = document.getElementById('name').value.trim();
   const phone   = document.getElementById('phone').value.trim();
