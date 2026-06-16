@@ -52,34 +52,56 @@ onAuthStateChanged(auth, async user => {
 // ── DASHBOARD ─────────────────────────────────────────────────
 async function loadDashboard() {
   try {
-    // Site stats
-    onSnapshot(doc(db,'siteStats','main'), snap => {
-      if (!snap.exists()) return;
-      const d = snap.data();
-      setText('dash-total-visits',  (d.totalVisits||0).toLocaleString());
-      setText('dash-unique-visits', (d.uniqueVisitors||0).toLocaleString());
-    });
+    // Site stats — з захистом від відсутності документа
+    try {
+      onSnapshot(doc(db,'siteStats','main'), snap => {
+        if (!snap.exists()) {
+          setText('dash-total-visits', '0');
+          setText('dash-unique-visits', '0');
+          return;
+        }
+        const d = snap.data();
+        setText('dash-total-visits',  (d.totalVisits||0).toLocaleString());
+        setText('dash-unique-visits', (d.uniqueVisitors||0).toLocaleString());
+      });
+    } catch(e) { setText('dash-total-visits','—'); }
+
     const today = new Date().toISOString().slice(0,10);
-    onSnapshot(doc(db,'siteStats','daily_'+today), snap => {
-      if (!snap.exists()) return;
-      setText('dash-today-visits', (snap.data().visits||0).toLocaleString());
-    });
-    // Players count
-    const pSnap = await getDocs(collection(db,'players'));
-    setText('dash-players', pSnap.size.toLocaleString());
+    try {
+      onSnapshot(doc(db,'siteStats','daily_'+today), snap => {
+        if (!snap.exists()) { setText('dash-today-visits','0'); return; }
+        setText('dash-today-visits', (snap.data().visits||0).toLocaleString());
+      });
+    } catch(e) { setText('dash-today-visits','—'); }
+
+    // Players count — без orderBy щоб не потребував індекс
+    try {
+      const pSnap = await getDocs(collection(db,'players'));
+      setText('dash-players', pSnap.size.toLocaleString());
+    } catch(e) { setText('dash-players','—'); }
+
     // Clans count
-    const cSnap = await getDocs(collection(db,'clans'));
-    setText('dash-clans', cSnap.size.toLocaleString());
-    // Top player
-    const topSnap = await getDocs(query(collection(db,'players'),orderBy('rating','desc'),limit(1)));
-    if (!topSnap.empty) {
-      const t = topSnap.docs[0].data();
-      setText('dash-top-player', (t.nickname||'—') + ' · ' + (t.rating||0));
-    }
+    try {
+      const cSnap = await getDocs(collection(db,'clans'));
+      setText('dash-clans', cSnap.size.toLocaleString());
+    } catch(e) { setText('dash-clans','—'); }
+
+    // Top player — може потребувати індекс, обробляємо окремо
+    try {
+      const topSnap = await getDocs(query(collection(db,'players'),orderBy('rating','desc'),limit(1)));
+      if (!topSnap.empty) {
+        const t = topSnap.docs[0].data();
+        setText('dash-top-player', (t.nickname||'—') + ' · ' + (t.rating||0));
+      } else { setText('dash-top-player','—'); }
+    } catch(e) { setText('dash-top-player','Індекс будується...'); }
+
     // Banned count
-    const banSnap = await getDocs(query(collection(db,'players'),where('banned','==',true)));
-    setText('dash-banned', banSnap.size.toLocaleString());
-  } catch(e) { console.error(e); }
+    try {
+      const banSnap = await getDocs(query(collection(db,'players'),where('banned','==',true)));
+      setText('dash-banned', banSnap.size.toLocaleString());
+    } catch(e) { setText('dash-banned','—'); }
+
+  } catch(e) { console.error('Dashboard error:', e); }
 }
 
 // ── PLAYERS ───────────────────────────────────────────────────
